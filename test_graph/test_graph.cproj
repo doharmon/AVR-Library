@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>{02b86f8f-7da5-42b4-a415-64fe19c79255}</ProjectGuid>
+    <avrdevice>ATmega328P</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>test_graph</AssemblyName>
+    <Name>test_graph</Name>
+    <RootNamespace>test_graph</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress />
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue />
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.32.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.Device>-mmcu=atmega328p -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\gcc\dev\atmega328p"</avrgcc.common.Device>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>NDEBUG</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\include</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\include</Value>
+    </ListValues>
+  </avrgcc.assembler.general.IncludePaths>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.Device>-mmcu=atmega328p -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\gcc\dev\atmega328p"</avrgcc.common.Device>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+      <Value>F_CPU=16000000</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\include</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.general.IncludePaths>
+    <ListValues>
+      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.2.132\include</Value>
+    </ListValues>
+  </avrgcc.assembler.general.IncludePaths>
+  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\source\lib_eqeval\eqeval-config.h">
+      <SubType>compile</SubType>
+      <Link>eqeval-config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_eqeval\eqeval.c">
+      <SubType>compile</SubType>
+      <Link>eqeval.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_eqeval\eqeval.h">
+      <SubType>compile</SubType>
+      <Link>eqeval.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_gccfix\gccfix.c">
+      <SubType>compile</SubType>
+      <Link>gccfix.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_gccfix\gccfix.h">
+      <SubType>compile</SubType>
+      <Link>gccfix.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_gccfix\gccfix_config.h">
+      <SubType>compile</SubType>
+      <Link>gccfix_config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\form-config.h">
+      <SubType>compile</SubType>
+      <Link>form-config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\form.c">
+      <SubType>compile</SubType>
+      <Link>form.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\form.h">
+      <SubType>compile</SubType>
+      <Link>form.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\mcurses-config.h">
+      <SubType>compile</SubType>
+      <Link>mcurses-config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\mcurses.c">
+      <SubType>compile</SubType>
+      <Link>mcurses.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\mcurses.h">
+      <SubType>compile</SubType>
+      <Link>mcurses.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\menu.c">
+      <SubType>compile</SubType>
+      <Link>menu.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\menu.h">
+      <SubType>compile</SubType>
+      <Link>menu.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\statusline.c">
+      <SubType>compile</SubType>
+      <Link>statusline.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\statusline.h">
+      <SubType>compile</SubType>
+      <Link>statusline.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_mcurses\wprintw.s">
+      <SubType>compile</SubType>
+      <Link>wprintw.s</Link>
+    </Compile>
+    <Compile Include="..\source\lib_timer\Timer.c">
+      <SubType>compile</SubType>
+      <Link>Timer.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_timer\Timer.h">
+      <SubType>compile</SubType>
+      <Link>Timer.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_xio\xio-config.h">
+      <SubType>compile</SubType>
+      <Link>xio-config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_xio\xio.h">
+      <SubType>compile</SubType>
+      <Link>xio.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_xio\xio.s">
+      <SubType>compile</SubType>
+      <Link>xio.s</Link>
+    </Compile>
+    <Compile Include="graph.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="graph.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="graph_form.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="graph_form.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="graph_menu.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="graph_menu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="test_graph.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>

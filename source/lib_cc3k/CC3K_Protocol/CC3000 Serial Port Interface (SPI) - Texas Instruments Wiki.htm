@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>CC3000 Serial Port Interface (SPI) - Texas Instruments Wiki</title>
+<meta name="generator" content="MediaWiki 1.25.1">
+<link rel="shortcut icon" href="http://processors.wiki.ti.com/favicon.ico"><style type="text/css">:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+<link rel="search" type="application/opensearchdescription+xml" href="http://processors.wiki.ti.com/opensearch_desc.php" title="Texas Instruments Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://processors.wiki.ti.com/api.php?action=rsd">
+<link rel="alternate" hreflang="x-default" href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Texas Instruments Wiki Atom feed" href="http://processors.wiki.ti.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load.css">
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:e1ffd603cbaaa5f1a36e0d13fe843535 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:f8d0c6895ce3ae14434c16b8fca59432 */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(/resources/src/mediawiki.action/images/green-checkmark.png?2014-10-01T12:38:20Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:b7714e8f038e3865508d553d58b1f7e6 */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load_002.css">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:70500b672b667d946e900b286b62c126 */</style>
+<script id="utag_52" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/conversion_async.js" charset="utf-8" async="" type="text/javascript"></script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/i.js" type="text/javascript"></script><script async="" type="text/javascript" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag_005.js"></script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load_002.php"></script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"CC3000_Serial_Port_Interface_(SPI)","wgTitle":"CC3000 Serial Port Interface (SPI)","wgCurRevisionId":187044,"wgRevisionId":187044,"wgArticleId":30647,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["CC3000","Documentation"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"CC3000_Serial_Port_Interface_(SPI)","wgRelevantArticleId":30647,"wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":true,"publish":false},"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":false,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+/* cache key: davincid_wikidb:resourceloader:filter:minify-js:7:a5c52c063dc436c1ca7c9f456936a5e9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load_004.php"></script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/Vector/csshover.min.htc")}</style><![endif]-->
+<script id="utag_ti.main_4" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_52" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag_004.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_106" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag_003.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_124" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag_006.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_137" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/utag_002.js" charset="utf-8" async="" type="text/javascript"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-CC3000_Serial_Port_Interface_SPI skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice"><div id="localNotice" dir="ltr" lang="en"><p><br>
+</p></div></div>
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">CC3000 Serial Port Interface (SPI)</span></h1>
+						<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Texas Instruments Wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><div class="hf-nsheader"><script language="Javascript">
+var tiContentGroup;
+var tiwikicat = (typeof(mw.config.values.wgCategories[0]) === "undefined"? "":mw.config.values.wgCategories[0]);
+tiContentGroup = "/DSP/wiki/Ext/" +tiwikicat;
+var tiPageName;
+tiPageName = 'wiki/CC3000_Serial_Port_Interface_(SPI)';
+</script></div><div class="hf-header"></div><p><a href="http://processors.wiki.ti.com/index.php/CC3000" title="CC3000"> Return to CC3000 Main Page</a><br>
+<a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide" title="CC3000 Host Programming Guide">Return to Host Programming guide</a>
+</p><p><br>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#CC3000_Serial_Port_Interface"><span class="tocnumber">1</span> <span class="toctext">CC3000 Serial Port Interface</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Overview"><span class="tocnumber">1.1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Protocol_Description"><span class="tocnumber">1.2</span> <span class="toctext">Protocol Description</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Master_Write_Transaction"><span class="tocnumber">1.2.1</span> <span class="toctext">Master Write Transaction</span></a>
+<ul>
+<li class="toclevel-4 tocsection-5"><a href="#Master_Write_Transaction_Header"><span class="tocnumber">1.2.1.1</span> <span class="toctext">Master Write Transaction Header</span></a></li>
+<li class="toclevel-4 tocsection-6"><a href="#First_Host_Write_Operation"><span class="tocnumber">1.2.1.2</span> <span class="toctext">First Host Write Operation</span></a></li>
+<li class="toclevel-4 tocsection-7"><a href="#Generic_Host_Write_Operation"><span class="tocnumber">1.2.1.3</span> <span class="toctext">Generic Host Write Operation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-8"><a href="#Master_Read_Transaction"><span class="tocnumber">1.2.2</span> <span class="toctext">Master Read Transaction</span></a>
+<ul>
+<li class="toclevel-4 tocsection-9"><a href="#Master_Read_Transaction_Header"><span class="tocnumber">1.2.2.1</span> <span class="toctext">Master Read Transaction Header</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Example_Implementation_of_SPI"><span class="tocnumber">1.3</span> <span class="toctext">Example Implementation of SPI</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Busy_Waiting_SPI_Implementation"><span class="tocnumber">1.3.1</span> <span class="toctext">Busy Waiting SPI Implementation</span></a>
+<ul>
+<li class="toclevel-4 tocsection-12"><a href="#Write_operation"><span class="tocnumber">1.3.1.1</span> <span class="toctext">Write operation</span></a></li>
+<li class="toclevel-4 tocsection-13"><a href="#Read_operation"><span class="tocnumber">1.3.1.2</span> <span class="toctext">Read operation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-14"><a href="#DMA_based_SPI_implementation"><span class="tocnumber">1.3.2</span> <span class="toctext">DMA based SPI implementation</span></a>
+<ul>
+<li class="toclevel-4 tocsection-15"><a href="#Write_operation_2"><span class="tocnumber">1.3.2.1</span> <span class="toctext">Write operation</span></a></li>
+<li class="toclevel-4 tocsection-16"><a href="#Read_operation_2"><span class="tocnumber">1.3.2.2</span> <span class="toctext">Read operation</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-17"><a href="#CC3000_Init_Operation"><span class="tocnumber">1.4</span> <span class="toctext">CC3000 Init Operation</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#1._Host_-.3E.3E_CC3000_.C2.A0-_.C2.A0_HCI_CMND_SIMPLE_LINK_START"><span class="tocnumber">1.4.1</span> <span class="toctext">1. Host -&gt;&gt; CC3000 &nbsp;- &nbsp; HCI_CMND_SIMPLE_LINK_START</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#2._CC3000_-.3E.3E_Host_-_HCI_EVNT_SIMPLE_LINK_START_command_complete"><span class="tocnumber">1.4.2</span> <span class="toctext">2. CC3000 -&gt;&gt; Host - HCI_EVNT_SIMPLE_LINK_START command complete</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#3._Host_-.3E.3E_CC3000_-_HCI_CMND_READ_BUFFER_SIZE"><span class="tocnumber">1.4.3</span> <span class="toctext">3. Host -&gt;&gt; CC3000 - HCI_CMND_READ_BUFFER_SIZE</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#4._CC3000_-.3E.3E_Host_-_HCI_EVNT_READ_BUFFER_SIZE.C2.A0command_complete"><span class="tocnumber">1.4.4</span> <span class="toctext">4. CC3000 -&gt;&gt; Host - HCI_EVNT_READ_BUFFER_SIZE&nbsp;command complete</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Related_Pages"><span class="tocnumber">2</span> <span class="toctext">Related Pages</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#Additional_References:_Host_Controller_Interface"><span class="tocnumber">3</span> <span class="toctext">Additional References: Host Controller Interface</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="CC3000_Serial_Port_Interface">CC3000 Serial Port Interface</span></h2>
+<h3><span class="mw-headline" id="Overview">Overview</span></h3>
+The SPI is based on the five-line, master/slave communication model as shown in the following figure: <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:606px;"><a href="http://processors.wiki.ti.com/index.php/File:Masterslave_communication_model.jpg" class="image"><img alt="" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Masterslave_communication_model.jpg" class="thumbimage" height="161" width="604"></a>  <div class="thumbcaption">Masterslave communication model.jpg</div></div></div></div> <br>
+<p>The lines are described as follows:
+</p>
+<table class="FCK__ShowTableBorders">
+
+<tbody><tr style="background: #4488cc; color: #ffffff">
+<th> I/O
+</th>
+<th> Description
+</th></tr>
+<tr>
+<td> CLCK<sup>(1)</sup>
+</td>
+<td> Clock (~0 to 16 MHz) from host to slave
+</td></tr>
+<tr style="background: #eeeeee">
+<td> nCS<sup>(2)</sup>
+</td>
+<td> nCS (active low) signal from host to slave
+</td></tr>
+<tr>
+<td> MOSI
+</td>
+<td> Data from host to slave
+</td></tr>
+<tr style="background: #eeeeee">
+<td> IRQ<sup>(3)</sup>
+</td>
+<td> Interrupt from slave to host
+</td></tr>
+<tr>
+<td> MISO
+</td>
+<td> Data from slave to host
+</td></tr></tbody></table>
+<p><br>
+</p>
+<ul><li><sup>(1)</sup><b>CLCK</b> provides a clock to the SPI interface on the CC3000 device.</li>
+<li><sup>(2)</sup><b>nCS</b> selects a CC3000 device, indicating that a 
+master wants to communicate to the CC3000 device. MISO is not set to 
+Hi-Z when nCS is deasserted.</li>
+<li><sup>(3)</sup><b>IRQ</b> is a dual-purpose slave to the master 
+direction line: in SPI IDLE state while no data transfer is active, 
+driving IRQ low indicates to the master that the CC3000 device has data 
+to pass to it; driving IRQ low following nCS deassertion indicates that 
+the CC3000 device is ready to receive data. All behaviors are explained 
+in detail in the following sections.</li></ul>
+<h3><span class="mw-headline" id="Protocol_Description">Protocol Description</span></h3>
+<p>The SPI protocol is used to communicate with the CC3000 device from 
+the host MCU that is acting as the SPI master while the CC3000 device is
+ the SPI slave. The protocol is an extension of the existing standard 
+SPI. The endianness on transport is assumed to be most-significant bit 
+(MSB) first.
+</p><p>The clock and phase settings for the SPI are configured such that
+ the data is sampled on the falling edge of the clock cycle. Note that 
+different MCU may use different naming conventions in order 
+to&nbsp;configure SPI clock phase and polarity, For example, MSP430 uses
+ UCCKPL and UCCKPH for clock polarity and phase respectively. Both are 
+set to 0, indicating that the data is sampled on the falling edge of the
+ clock cycle. The more generic convention is CPOL and CPHA, however, in 
+order to configure sampling on the falling edge of the clock cycle, CPHA
+ is set to 1.
+</p>
+All data sent or received over the SPI interface must be 16-bit aligned.
+ A padding byte is added where required. Each packet passing on the SPI 
+bus consists of a 5-byte SPI header followed by user data and optionally
+ by a padding byte so that the whole length is 16-bit aligned, as shown 
+in the next Figure. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1010px;"><a href="http://processors.wiki.ti.com/index.php/File:SPI_header.jpg" class="image"><img alt="SPI header.jpg" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/SPI_header.jpg" class="thumbimage" height="182" width="1008"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p><p>The first byte of the header is an operation opcode (READ or 
+WRITE) followed by two bytes that indicate the size of the payload 
+length (including the alignment byte). Two busy bytes then follow to 
+conclude the header.
+</p><p>The data payload directly follows the last byte of the header. 
+The padding byte is added when the length of the payload part of the 
+packet is even. <br>
+</p>
+<h4><span class="mw-headline" id="Master_Write_Transaction">Master Write Transaction</span></h4>
+<p>There is a slight difference between the first master write 
+transaction after power up and the rest of the write transactions. The 
+difference follows from the internal CC3000 implementation of SPI.
+</p>
+<h5><span class="mw-headline" id="Master_Write_Transaction_Header">Master Write Transaction Header</span></h5>
+The header precedes each data packet. The structure of the header (see 
+figure below) is independent of whether or not it is a first write 
+transaction. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:762px;"><a href="http://processors.wiki.ti.com/index.php/File:Master_Write_Transaction_Header.jpg" class="image"><img alt="Master Write Transaction Header.jpg" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Master_Write_Transaction_Header.jpg" class="thumbimage" height="122" width="760"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>The first byte of the header is the write opcode followed by two 
+bytes that indicate the size of the payload length (including the 
+alignment byte). Two busy bytes then follow to conclude the header.
+</p><p>The data payload directly follows the last byte of the header. The following summarizes the header structure:
+</p>
+<pre>Write = Opcode for write is 0x01
+M&lt;sub&gt;MSB&lt;/sub&gt;, M&lt;sub&gt;LSB&lt;/sub&gt; = 16-bit data payload length (including alignment byte)
+Busy = Busy byte (0x00)
+Busy = Busy byte (0x00)
+</pre>
+<h5><span class="mw-headline" id="First_Host_Write_Operation">First Host Write Operation</span></h5>
+<p>The first write transaction to occur after release of the shutdown has slightly different timing than the others.
+</p>
+The normal Master SPI write sequence is nCS low, followed by IRQ low 
+(CC3000 host), indicating that the CC3000 core device is ready to accept
+ data. However, after power up the sequence is slightly different, as 
+shown in the following Figure: <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:814px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_Master_SPI_Write_Sequence_After_Power_Up.png" class="image"><img alt="CC3000 Master SPI Write Sequence After Power Up.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_Master_SPI_Write_Sequence_After_Power_Up.png" class="thumbimage" height="315" width="812"></a>  <div class="thumbcaption"></div></div></div></div> The following is a sequence of operations:
+<ol><li>The master detects the IRQ line low: in this case the detection 
+of IRQ low does not indicate the intention of the CC3000 device to 
+communicate with the master but rather CC3000 readiness after power up.</li>
+<li>The master asserts nCS.</li>
+<li>The master introduces a delay of at least 50 μs before starting actual transmission of data.</li>
+<li>The master transmits the first 4 bytes of the SPI header.</li>
+<li>The master introduces a delay of at least an additional 50 μs.</li>
+<li>The master transmits the rest of the packet.</li></ol>
+<h5><span class="mw-headline" id="Generic_Host_Write_Operation">Generic Host Write Operation</span></h5>
+<ol><li>The master asserts nCS (that is, drives the signal low) and waits for IRQ assertion.</li>
+<li>The CC3000 device asserts IRQ when ready to receive the data.</li>
+<li>The master starts the write transaction. The write transaction 
+consists of a 5-byte header followed by the payload and a padding byte 
+(if required: remember, the total packet length must be 16-bit aligned)</li>
+<li>After the last byte of data, the nCS is deasserted by the master.</li>
+<li>The CC3000 device deasserts the IRQ line.</li></ol>
+The following figure shows a master write transaction. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:706px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_Master_Write_Transaction.png" class="image"><img alt="CC3000 Master Write Transaction.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_Master_Write_Transaction.png" class="thumbimage" height="200" width="704"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p><p><br>
+</p>
+<h4><span class="mw-headline" id="Master_Read_Transaction">Master Read Transaction</span></h4>
+<p>The master read transaction is initiated by the CC3000 device by 
+asserting (that is, driving low) an IRQ line while the bus is in IDLE 
+state. If a master detects an IRQ assertion while in the process of 
+initialization of the master write transaction, it is up to the master 
+to resolve the order of read and write operations. If the master 
+continues with the master write transaction, the deasserted IRQ can be 
+treated as a deassertion that is required as a response to nCS. The 
+following is a sequence:
+</p>
+<ol><li>The IRQ line is asserted by the CC3000 device.</li>
+<li>The master asserts the nCS line.</li>
+<li>The master transmits the following 3 bytes: read opcode followed by two busy bytes.</li>
+<li>The CC3000 sends back the following data: the first two bytes 
+indicate the payload length and the data payload bytes follow, 
+immediately after.</li>
+<li>At the end of read transaction, the master drives nCS inactive.</li>
+<li>The CC3000 device deasserts an IRQ line.</li></ol>
+<p>The following figure shows the master read transaction process. <br>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:839px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_Master_Read_Transactoin_v2.png" class="image"><img alt="CC3000 Master Read Transactoin v2.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_Master_Read_Transactoin_v2.png" class="thumbimage" height="547" width="837"></a>  <div class="thumbcaption"></div></div></div></div> <br>
+<p><br>
+</p>
+<h5><span class="mw-headline" id="Master_Read_Transaction_Header">Master Read Transaction Header</span></h5>
+<p>The following summarizes the master read transaction header structure:
+</p>
+<pre>Read = Opcode for write is 0x03
+SMSB, SLSB = 16-bit data payload length (including alignment byte)
+Busy = Busy byte (0x00)
+</pre>
+<h3><span class="mw-headline" id="Example_Implementation_of_SPI">Example Implementation of SPI</span></h3>
+<p>The following two sections present two example implementations of the
+ CC3000 SPI interface in terms of state-machines. The first 
+implementation is based on the MSP430, which does not use DMA during 
+read/write operations (also called the busy waiting approach) and thus 
+the state-machine is much easier but more MCU tight. The second 
+implementation is based on the LM3S9B96 Stellaris, which uses DMA for 
+data transfer to or from the SPI.
+</p>
+<h4><span class="mw-headline" id="Busy_Waiting_SPI_Implementation">Busy Waiting SPI Implementation</span></h4>
+<h5><span class="mw-headline" id="Write_operation">Write operation</span></h5>
+The following figure shows the write operation flow. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:609px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_Write_Operation_Flow.png" class="image"><img alt="CC3000 Write Operation Flow.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_Write_Operation_Flow.png" class="thumbimage" height="694" width="607"></a>  <div class="thumbcaption"></div></div></div></div> <br>
+<table style="height: 123px" border="1" cellpadding="1" cellspacing="1">
+
+<tbody><tr>
+<td> <b>In this implementation the write operation is performed from the context of the interrupt on the IRQ line.</b>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h5><span class="mw-headline" id="Read_operation">Read operation</span></h5>
+The following figure shows the read operation flow. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:352px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_Read_operation_flow.png" class="image"><img alt="CC3000 Read operation flow.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_Read_operation_flow.png" class="thumbimage" height="669" width="350"></a>  <div class="thumbcaption"></div></div></div></div><br>
+<table style="height: 123px" border="1" cellpadding="1" cellspacing="1">
+
+<tbody><tr>
+<td> <b>In this implementation the interrupt on the IRQ line is enabled after processing the received data.</b>
+</td></tr></tbody></table>
+<h4><span class="mw-headline" id="DMA_based_SPI_implementation">DMA based SPI implementation</span></h4>
+<p>Direct memory access (DMA)-based operation has more states to handle 
+compared to nonDMA-based operation. Moreover, it is a more 
+asynchronous-like implementation based on interrupts from the DMA 
+module.
+</p>
+<h5><span class="mw-headline" id="Write_operation_2">Write operation</span></h5>
+<p>The following two figures show SPI write implementation for the DMA-based SPI.
+</p>
+<table style="height: 123px" border="1" cellpadding="1" cellspacing="1">
+
+<tbody><tr>
+<td> <b>A limitation of the LM3S9B96 data buffer prevents more than 1024
+ bytes from being copied in one transaction of the DMA from RAM to the 
+SPI FIFO; thus, two DMA transactions are required.</b>
+</td></tr></tbody></table>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:364px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_DMA-Based_Write_Operation_Flow_%281_of_3%29.png" class="image"><img alt="CC3000 DMA-Based Write Operation Flow (1 of 3).png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_DMA-Based_Write_Operation_Flow_1_of_3.png" class="thumbimage" height="183" width="362"></a>  <div class="thumbcaption"></div></div></div></div> After the nCS is activated, the host continues operating in main loop until IRQ interrupt detected. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:547px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_DMA-based_write_operation_flow_%282_of_3%29.png" class="image"><img alt="CC3000 DMA-based write operation flow (2 of 3).png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_DMA-based_write_operation_flow_2_of_3.png" class="thumbimage" height="301" width="545"></a>  <div class="thumbcaption"></div></div></div></div> <br>After
+ triggering DMA in the context of the IRQ interrupt handler to write the
+ whole packet or part of the packet as described, the context returns to
+ the main loop, while the SPI portion waits for the DMA-complete 
+interrupt (see figure below). <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:608px;"><a href="http://processors.wiki.ti.com/index.php/File:CC3000_DMA-based_write_operation_flow_%283_of_3%29.png" class="image"><img alt="CC3000 DMA-based write operation flow (3 of 3).png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/CC3000_DMA-based_write_operation_flow_3_of_3.png" class="thumbimage" height="174" width="606"></a>  <div class="thumbcaption"></div></div></div></div> <br>
+<h5><span class="mw-headline" id="Read_operation_2">Read operation</span></h5>
+The following figure shows an SPI read operation of the DMA-based 
+implementation of the SPI interface. The read operation is triggered by 
+an IRQ line activation and reception of the interrupt on the IRQ line. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:310px;"><a href="http://processors.wiki.ti.com/index.php/File:Interrupt_on_IRQ_low.jpg" class="image"><img alt="Interrupt on IRQ low.jpg" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Interrupt_on_IRQ_low.jpg" class="thumbimage" height="608" width="308"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>After triggering a DMA to read first 10 bytes, the control 
+returns back to the non-interrupt context, waiting for DMA complete 
+interrupt.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1029px;"><a href="http://processors.wiki.ti.com/index.php/File:DMA_complete.jpg" class="image"><img alt="DMA complete.jpg" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/DMA_complete.jpg" class="thumbimage" height="522" width="1027"></a>  <div class="thumbcaption"></div></div></div></div> <br>
+<p><br>
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id="CC3000_Init_Operation">CC3000 Init Operation</span></h3>
+<p><br>CC3000 has a unique command sequence in order to initialize.
+</p><p>Host sends to CC3000 device the commands over SPI and waits for ‘command complete’ for each command from CC3000.
+</p><p><br>&nbsp;1. The first command the host should send CC3000 is 
+HCI_CMND_SIMPLE_LINK_START with one argument which specifies if patches 
+are available at host or not.
+</p><p>&nbsp;2. As a response, CC3000 will return ‘command complete’ for this event which specifies the same opcode of the command.
+</p><p>&nbsp;3. The following command the host will send CC3000 is HCI_CMND_READ_BUFFER_SIZE with no arguments.
+</p><p>&nbsp;4. As a response, CC3000 will return ‘command complete’ for this event which specifies the same opcode of the command.
+</p><p>At this stage, CC3000 device is awake and ready to receive any command, or send any API in the host driver.
+</p><p><br>
+</p>
+<h5><span class="mw-headline" id="1._Host_-.3E.3E_CC3000_.C2.A0-_.C2.A0_HCI_CMND_SIMPLE_LINK_START">1. Host -&gt;&gt; CC3000 &nbsp;- &nbsp; HCI_CMND_SIMPLE_LINK_START<br></span></h5>
+<p>Host sends CC3000 over SPI the first command: HCI_CMND_SIMPLE_LINK_START (command opcode 0x4000)
+<br>Data: 0x01 0x00 0x05 0x00, minimum 50 ­µs pause, 0x00 0x01 0x00 0x40 0x01 0x00
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:884px;"><a href="http://processors.wiki.ti.com/index.php/File:Buffer1.png" class="image"><img alt="Buffer1.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Buffer1.png" class="thumbimage" height="295" width="882"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p><p><br>First 4 bytes:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1462px;"><a href="http://processors.wiki.ti.com/index.php/File:1cc3000.png" class="image"><img alt="1cc3000.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/1cc3000.png" class="thumbimage" height="872" width="1460"></a>  <div class="thumbcaption"></div></div></div></div><br><br>
+<p>The remaining 6 bytes:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1461px;"><a href="http://processors.wiki.ti.com/index.php/File:12cc3000.png" class="image"><img alt="12cc3000.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/12cc3000.png" class="thumbimage" height="876" width="1459"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p>
+<h5><span class="mw-headline" id="2._CC3000_-.3E.3E_Host_-_HCI_EVNT_SIMPLE_LINK_START_command_complete">2. CC3000 -&gt;&gt; Host - HCI_EVNT_SIMPLE_LINK_START command complete<br></span></h5>
+<p>CC3000 sends Host over SPI the command complete event for first 
+command received: HCI_EVNT_SIMPLE_LINK_START (event opcode 0x4000 - the 
+same as for command HCI_CMND_SIMPLE_LINK_START). Note that the Host MUST
+ output 0x03 as the first byte or else the CC3000 will not send the 
+remaining bytes.
+</p><p>Data: 0x02 0x00 0x00 0x00 0x05 0x04 0x00 0x40 0x01 0x00
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1465px;"><a href="http://processors.wiki.ti.com/index.php/File:2CC3000.png" class="image"><img alt="2CC3000.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/2CC3000.png" class="thumbimage" height="874" width="1463"></a>  <div class="thumbcaption"></div></div></div></div><br>
+<h5><span class="mw-headline" id="3._Host_-.3E.3E_CC3000_-_HCI_CMND_READ_BUFFER_SIZE">3. Host -&gt;&gt; CC3000 - HCI_CMND_READ_BUFFER_SIZE</span></h5>
+<p>Host sends CC3000 over SPI: HCI_CMND_READ_BUFFER_SIZE (command opcode 0x400b)
+</p><p>Data: 0x01 0x00 0x05 0x00 0x00 0x01 0x0b 0x40 0x00 0x00
+</p><p><br>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:904px;"><a href="http://processors.wiki.ti.com/index.php/File:Buffer3.png" class="image"><img alt="Buffer3.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Buffer3.png" class="thumbimage" height="329" width="902"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1465px;"><a href="http://processors.wiki.ti.com/index.php/File:3cc3000.png" class="image"><img alt="3cc3000.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/3cc3000.png" class="thumbimage" height="875" width="1463"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+</p>
+<h5><span class="mw-headline" id="4._CC3000_-.3E.3E_Host_-_HCI_EVNT_READ_BUFFER_SIZE.C2.A0command_complete">4. CC3000 -&gt;&gt; Host - HCI_EVNT_READ_BUFFER_SIZE&nbsp;command complete</span></h5>
+<p>CC3000 sends Host over SPI the event for HCI_EVNT_READ_BUFFER_SIZE 
+notifying the command was completed successfully. The arguments of the 
+message carry the queried data about the buffers.
+</p><p><br>
+Data: 0x02 0x00 0x00 0x00 0x09 0x04 0x0b 0x40 0x04 0x00 0x06 0xdc 0x05 
+0x00 (command complete for opcode 0x400b = HCI_CMND_READ_BUFFER_SIZE)
+</p>
+<ul><li>Number of buffers returned from CC3000: 0x06</li>
+<li>The length of buffers returned from CC3000: 0x05dc = 1500</li></ul>
+<p>The last byte of the message (0x00) is optional padding byte in order to achieve 16-bit aligned SPI packet.
+</p><p><br>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1463px;"><a href="http://processors.wiki.ti.com/index.php/File:44cc3000.png" class="image"><img alt="44cc3000.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/44cc3000.png" class="thumbimage" height="872" width="1461"></a>  <div class="thumbcaption"></div></div></div></div>
+<p><br>
+The reason behind the short pause between 10th and 11th message byte in 
+the analyzer capture above is due to host driver implementation of <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Sample_Application" title="CC3000 Wi-Fi Downloads">SDK</a>.
+ After reading in the first 10 bytes of the message, it processes the 
+SPI header to figure out how many additional bytes need to be clocked 
+out from CC3000. If SPI payload length given in SPI header is greater 
+than 5, then it continues reading from CC3000 the remaining bytes.
+</p><p><br>
+<br><br>
+</p>
+<h2><span class="mw-headline" id="Related_Pages">Related Pages</span></h2>
+<p>The following pages, use the SPI's page as a reference
+</p>
+<ol><li><a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide" title="CC3000 Host Programming Guide"> Host Programming Guide</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Driver_Porting_Guide" title="CC3000 Host Driver Porting Guide"> Host Driver Porting Guide</a></li></ol>
+<h2><span class="mw-headline" id="Additional_References:_Host_Controller_Interface">Additional References: Host Controller Interface</span></h2>
+<ol><li><a href="http://processors.wiki.ti.com/index.php/CC3000_Protocol" title="CC3000 Protocol">Host Controller Interface</a></li></ol>
+<p>This page addresses the logical communication protocol between the CC3000 wireless module and SPI host. 
+The content of this page applies to CC3000 Service Pack v1.12 (CC3000 firmware version 1.26).
+</p><p><br><br>
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.080 seconds
+Real time usage: 0.189 seconds
+Preprocessor visited node count: 113/1000000
+Preprocessor generated node count: 144/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key davincid_wikidb:pcache:idhash:30647-0!*!0!!en!5!* and timestamp 20160327235924 and revision id 187044
+ -->
+<div class="hf-footer"></div><div class="hf-nsfooter"><table style="text-align:center; background:white; width:100%; text-align:left; height: 65px border-top: 1px solid; border-bottom: 1px solid; border-left: 1px solid; border-right: 1px solid; border-width: 1px; border-style: solid;">
+<tbody><tr>
+<td width="305px"><a href="http://processors.wiki.ti.com/index.php/File:E2e.jpg" class="image"><img alt="E2e.jpg" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/E2e.jpg" height="63" width="305"></a>
+</td>
+<td><i>For technical support please post your questions at <a rel="nofollow" class="external free" href="http://e2e.ti.com/">http://e2e.ti.com</a>. Please post only comments about the article <b>CC3000 Serial Port Interface (SPI)</b> here.</i>
+</td></tr></tbody></table>
+<table style="border-style:solid; border-width:1px; text-align:center; width:100%;">
+
+<tbody><tr style="font-size:150%;">
+<td rowspan="2"> <a href="http://processors.wiki.ti.com/index.php/File:Hyperlink_blue.png" class="image"><img alt="Hyperlink blue.png" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/Hyperlink_blue.png" height="96" width="96"></a>
+</td>
+<td><b>Links</b>
+</td></tr>
+<tr>
+<td>
+<table style="text-align: left;">
+<tbody><tr>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/amplifier_and_linear.page">Amplifiers &amp; Linear</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/audio/audio_overview.page">Audio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/rfif.page">Broadband RF/IF &amp; Digital Radio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/clocksandtimers/clocks_and_timers.page">Clocks &amp; Timers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/dataconverters/data_converter.page">Data Converters</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/mems/mems.page">DLP &amp; MEMS</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/high_reliability.page">High-Reliability</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/interface/interface.page">Interface</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/logic/home_overview.page">Logic</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/powermanagement/power_portal.page">Power Management</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/embedded_processor.page">Processors</a>
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/arm.page">ARM Processors</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/home.page">Digital Signal Processors (DSP)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/microcontroller/home.page">Microcontrollers (MCU)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/omap-applications-processors/the-omap-experience.page">OMAP Applications Processors</a></li></ul>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/switches_and_multiplexers.page">Switches &amp; Multiplexers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/temperature_sensor.page">Temperature Sensors &amp; Control ICs</a><br>
+<a rel="nofollow" class="external text" href="http://focus.ti.com/wireless/docs/wirelessoverview.tsp?familyId=2003&amp;sectionId=646&amp;tabId=2735">Wireless Connectivity</a>
+</p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><!-- HitBox Sub accounts Code START -->
+<script language="JavaScript" src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/metrics-min.js" type="text/javascript"></script>
+<!-- HitBox Sub accounts Code END -->
+</p></div></div>									<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;oldid=187044">http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_(SPI)&amp;oldid=187044</a>"					</div>
+													<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://processors.wiki.ti.com/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="http://processors.wiki.ti.com/index.php/Category:CC3000" title="Category:CC3000">CC3000</a></li><li><a href="http://processors.wiki.ti.com/index.php/Category:Documentation" title="Category:Documentation">Documentation</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="http://processors.wiki.ti.com/index.php?title=Special:UserLogin&amp;returnto=CC3000+Serial+Port+Interface+%28SPI%29" title="You are encouraged to log in; however, it is not mandatory [Alt+Shift+o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="http://processors.wiki.ti.com/index.php/Special:RequestAccount" title="You are encouraged to create an account and log in; however, it is not mandatory">Request account</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29" title="View the content page [Alt+Shift+c]" accesskey="c">Page</a></span></li>
+															<li id="ca-talk"><span><a href="http://processors.wiki.ti.com/index.php/Talk:CC3000_Serial_Port_Interface_%28SPI%29" title="Discussion about the content page [Alt+Shift+t]" accesskey="t">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 tabindex="0" id="p-variants-label"><span>Variants</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29">Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;action=edit" title="This page is protected.
+You can view its source [Alt+Shift+e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;action=history" title="Past revisions of this page [Alt+Shift+h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div style="" id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 tabindex="0" id="p-cactions-label"><span>More</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/index.php" id="searchform">
+														<div id="simpleSearch">
+															<input autocomplete="off" tabindex="1" name="search" placeholder="Search" title="Search Texas Instruments Wiki [Alt+Shift+f]" accesskey="f" id="searchInput" type="search"><input value="Special:Search" name="title" type="hidden"><input name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" type="submit">								</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal first" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+			<h3 id="p-navigation-label">Navigation</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-mainpage"><a href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page [Alt+Shift+z]" accesskey="z">Main Page</a></li>
+													<li id="n-All-pages"><a href="http://processors.wiki.ti.com/index.php/Special:AllPages">All pages</a></li>
+													<li id="n-All-categories"><a href="http://processors.wiki.ti.com/index.php/Special:Categories">All categories</a></li>
+													<li id="n-recentchanges"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [Alt+Shift+r]" accesskey="r">Recent changes</a></li>
+													<li id="n-randompage"><a href="http://processors.wiki.ti.com/index.php/Special:Random" title="Load a random page [Alt+Shift+x]" accesskey="x">Random page</a></li>
+													<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+			<h3 id="p-coll-print_export-label">Print/export</h3>
+
+			<div class="body">
+									<ul>
+													<li id="coll-create_a_book"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=CC3000+Serial+Port+Interface+%28SPI%29">Create a book</a></li>
+													<li id="coll-download-as-rl"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=CC3000+Serial+Port+Interface+%28SPI%29&amp;oldid=187044&amp;writer=rl">Download as PDF</a></li>
+													<li id="t-print"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;printable=yes" title="Printable version of this page [Alt+Shift+p]" accesskey="p">Printable version</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Toolbox</h3>
+
+			<div class="body">
+									<ul>
+													<li id="t-whatlinkshere"><a href="http://processors.wiki.ti.com/index.php/Special:WhatLinksHere/CC3000_Serial_Port_Interface_%28SPI%29" title="A list of all wiki pages that link here [Alt+Shift+j]" accesskey="j">What links here</a></li>
+													<li id="t-recentchangeslinked"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChangesLinked/CC3000_Serial_Port_Interface_%28SPI%29" title="Recent changes in pages linked from this page [Alt+Shift+k]" accesskey="k">Related changes</a></li>
+													<li id="t-specialpages"><a href="http://processors.wiki.ti.com/index.php/Special:SpecialPages" title="A list of all special pages [Alt+Shift+q]" accesskey="q">Special pages</a></li>
+													<li id="t-permalink"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;oldid=187044" title="Permanent link to this revision of the page">Permanent link</a></li>
+													<li id="t-info"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Serial_Port_Interface_%28SPI%29&amp;action=info" title="More information about this page">Page information</a></li>
+											</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 29 October 2014, at 11:39.</li>
+											<li id="footer-info-viewcount">This page has been accessed 3,404 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://processors.wiki.ti.com/index.php/Project:Privacy_policy" title="Project:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="http://processors.wiki.ti.com/index.php/Project:About" title="Project:About">About Texas Instruments Wiki</a></li>
+											<li id="footer-places-disclaimer"><a href="http://processors.wiki.ti.com/index.php/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-termsofservice"><a href="http://processors.wiki.ti.com/index.php/Project:Terms_of_Service" title="Project:Terms of Service">Terms of Use</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+															<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike" height="31" width="88"></a>
+													</li>
+											<li id="footer-poweredbyico">
+															<a href="http://www.mediawiki.org/"><img src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" height="31" width="88"></a>
+													</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script><div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"http://processors.wiki.ti.com/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/load_003.php"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="CC3000%20Serial%20Port%20Interface%20%28SPI%29%20-%20Texas%20Instruments%20Wiki_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-3008403-2");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":595});
+}</script>
+	
+
+</body></html>

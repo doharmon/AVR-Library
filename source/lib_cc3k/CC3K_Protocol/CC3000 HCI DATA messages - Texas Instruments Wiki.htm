@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>CC3000 HCI DATA messages - Texas Instruments Wiki</title>
+<meta name="generator" content="MediaWiki 1.25.1">
+<link rel="shortcut icon" href="http://processors.wiki.ti.com/favicon.ico"><style type="text/css">:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+<link rel="search" type="application/opensearchdescription+xml" href="http://processors.wiki.ti.com/opensearch_desc.php" title="Texas Instruments Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://processors.wiki.ti.com/api.php?action=rsd">
+<link rel="alternate" hreflang="x-default" href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Texas Instruments Wiki Atom feed" href="http://processors.wiki.ti.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load.css">
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:e1ffd603cbaaa5f1a36e0d13fe843535 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:f8d0c6895ce3ae14434c16b8fca59432 */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(/resources/src/mediawiki.action/images/green-checkmark.png?2014-10-01T12:38:20Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:b7714e8f038e3865508d553d58b1f7e6 */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load_002.css">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:70500b672b667d946e900b286b62c126 */</style>
+<script id="utag_52" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/conversion_async.js" charset="utf-8" async="" type="text/javascript"></script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/i.js" type="text/javascript"></script><script async="" type="text/javascript" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag.js"></script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load.php"></script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load_002.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"CC3000_HCI_DATA_messages","wgTitle":"CC3000 HCI DATA messages","wgCurRevisionId":199034,"wgRevisionId":199034,"wgArticleId":33818,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["CC3000","Documentation"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"CC3000_HCI_DATA_messages","wgRelevantArticleId":33818,"wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":true,"publish":false},"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":false,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+/* cache key: davincid_wikidb:resourceloader:filter:minify-js:7:a5c52c063dc436c1ca7c9f456936a5e9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load_003.php"></script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/Vector/csshover.min.htc")}</style><![endif]-->
+<script id="utag_ti.main_4" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag_005.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_52" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag_003.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_106" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag_006.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_124" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag_004.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_137" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/utag_002.js" charset="utf-8" async="" type="text/javascript"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-CC3000_HCI_DATA_messages skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice"><div id="localNotice" dir="ltr" lang="en"><p><br>
+</p></div></div>
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">CC3000 HCI DATA messages</span></h1>
+						<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Texas Instruments Wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><div class="hf-nsheader"><script language="Javascript">
+var tiContentGroup;
+var tiwikicat = (typeof(mw.config.values.wgCategories[0]) === "undefined"? "":mw.config.values.wgCategories[0]);
+tiContentGroup = "/DSP/wiki/Ext/" +tiwikicat;
+var tiPageName;
+tiPageName = 'wiki/CC3000_HCI_DATA_messages';
+</script></div><div class="hf-header"></div><p><a href="http://processors.wiki.ti.com/index.php/CC3000" title="CC3000"> Return to CC3000 Main page</a>
+</p><p>This page list the CC3000 modules HCI Data messages and explains 
+their protocol fields. For basic understanding of the CC3000 protocol, 
+please see <a href="http://processors.wiki.ti.com/index.php/CC3000_Protocol" title="CC3000 Protocol">Host Controller Interface</a> page. The message field bytes in this page written in <span style="color:Lime; background:Gray"><b>color <i>lime</i></b></span> denote example values for the specific message and thus they can have alternate values according to message content.
+</p><p>The content of this page applies to CC3000 <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Patch_Programmer" title="CC3000 Wi-Fi Downloads">Service Pack v1.12</a> (CC3000 firmware version 1.26).
+</p><p><b>Please note that this page currently does not display a full list, but only a <i>selection</i> of all possible CC3000 HCI Data messages.</b>
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#HCI_DATA_SEND_.280x81.29"><span class="tocnumber">1</span> <span class="toctext">HCI_DATA_SEND (0x81)</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#HCI_DATA_RECV_.280x85.29"><span class="tocnumber">2</span> <span class="toctext">HCI_DATA_RECV (0x85)</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#HCI_DATA_SENDTO_.280x83.29"><span class="tocnumber">3</span> <span class="toctext">HCI_DATA_SENDTO (0x83)</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#HCI_DATA_NVMEM_WRITE_.280x90.29"><span class="tocnumber">4</span> <span class="toctext">HCI_DATA_NVMEM_WRITE (0x90)</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#HCI_DATA_NVMEM_READ_.280x91.29"><span class="tocnumber">5</span> <span class="toctext">HCI_DATA_NVMEM_READ (0x91)</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Example_reading_out_the_CC3000_MAC_address"><span class="tocnumber">5.1</span> <span class="toctext">Example reading out the CC3000 MAC address</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Example_reading_out_the_SmartConfig_AES_key"><span class="tocnumber">5.2</span> <span class="toctext">Example reading out the SmartConfig AES key</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Example_reading_out_the_SmartConfig_configuration_vector"><span class="tocnumber">5.3</span> <span class="toctext">Example reading out the SmartConfig configuration vector</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Related_Pages"><span class="tocnumber">6</span> <span class="toctext">Related Pages</span></a></li>
+</ul>
+</div>
+
+<p><br>
+HCI Data messages are used for transporting data to be sent or received over the wireless link or to read or write the CC3000 <a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide#CC3000_NVMEM_API.E2.80.99s" title="CC3000 Host Programming Guide"> non-volatile memory (EEPROM)</a>. HCI Data messages can carry two types of payload information: arguments and data.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="HCI_DATA_SEND_.280x81.29">HCI_DATA_SEND (0x81)</span></h1>
+<p>HCI_DATA_SEND message is used to transmit a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a> packet to a socket. Before issuing a HCI_DATA_SEND message to CC3000, a socket should first be created using <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SOCKET_.280x1001.29" title="CC3000 HCI CMND messages"> HCI_CMND_SOCKET (0x1001)</a>.
+ Please note that a socket will be closed by CC3000 after 60 seconds of 
+inactivity, thus a time between creating a socket and issuing 
+HCI_DATA_SEND should not exceed this period! Use the <i>Socket Handle</i> returned by <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_SOCKET_.280x1001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_SOCKET (0x1001)</a> in the appropriate HCI_DATA_SEND argument field.
+</p><p><br>
+The HCI_DATA_SEND SPI message is as follows (an example of writing <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/ASCII">ASCII</a> <i>12345</i> to socket with handle <i>2</i>):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>27</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x1B</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<span style="color:Lime"><b>27</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (5-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x81
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=16
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x10
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>21</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x15</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>21</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 16 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Socket Handle</b>, value=<span style="color:Lime"><b>2</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x0<span style="color:Lime"><b>2</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>?</b>, value=12
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x0C
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>TCP data length</b>, value=<span style="color:Lime"><b>5</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x05</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Flags</b>, value=0
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>5</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>UDP data</b>, <span style="color:Lime"><b>ASCII <i>12345</i></b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x31</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x32</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x33</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x34</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x35</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+CC3000 acknowledges the reception of the data by emitting an <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_DATA_SEND_.280x1003.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_DATA_SEND (0x1003)</a>
+ event, which only confirms that the data has been received and stored 
+in the CC3000 internal transmission queue and not that it has already 
+been sent over the air.
+</p>
+<h1><span class="mw-headline" id="HCI_DATA_RECV_.280x85.29">HCI_DATA_RECV (0x85)</span></h1>
+<p>Spiheader+ 02 85 18 1E00 00000000 0C000000 0600 0000 0000 0000 0000 0000 0000 0000 3132 3334 3500<br>
+  
+example server sending 5 bytes "12345" with a tcp padding byte added as 
+the 0600 show the length, though it only was 5 real data bytes. 	
+minimum tcp data block is 6, so if tcp timeouts it will send padding 
+bytes.<br> If your 0x1004 cmd requested less than 6bytes you will only 
+get those number of bytes but the padding bytes may show up next time.<br>
+So your parser have to take in to account padding bytes (zeros) as you 
+will not be able to tell if it was a real zero or a padding zero.<br>
+Best, make your server transfers protocol (header+data etc) you come up with is at minimum 6bytes.
+</p>
+<h1><span class="mw-headline" id="HCI_DATA_SENDTO_.280x83.29">HCI_DATA_SENDTO (0x83)</span></h1>
+<p>HCI_DATA_SENDTO message is used to transmit a <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/User_Datagram_Protocol">UDP</a> packet to a socket. Before issuing a HCI_DATA_SENDTO message to CC3000, a socket should first be created using <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SOCKET_.280x1001.29" title="CC3000 HCI CMND messages"> HCI_CMND_SOCKET (0x1001)</a>.
+ Please note that a socket will be closed by CC3000 after 60 seconds of 
+inactivity, thus a time between creating a socket and issuing 
+HCI_DATA_SENDTO should not exceed this period! Use the <i>Socket Handle</i> returned by <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_SOCKET_.280x1001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_SOCKET (0x1001)</a> in the appropriate HCI_DATA_SENDTO argument field.
+</p><p><br>
+The HCI_DATA_SENDTO SPI message is as follows (an example of writing <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/ASCII">ASCII</a> <i>12345</i> to IP 192.168.0.2 Port 6789 and using socket with handle <i>0</i>):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>51</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x33</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<span style="color:Lime"><b>51</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (5-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x83
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=24
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x18
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>45</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x2D</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>45</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 24 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Socket Handle</b>, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x0<span style="color:Lime"><b>0</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>?</b>, value=20
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x14
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>UDP data length</b>, value=<span style="color:Lime"><b>5</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x05</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Flags</b>, value=0
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b><i>Unused</i> offset (UDP data length + 8)</b>, value=<span style="color:Lime"><b>13</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b><i>Unused</i> length</b>, value=8
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x08
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>21</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>UDP data</b>, <span style="color:Lime"><b>ASCII <i>12345</i></b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x31</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x32</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x33</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x34</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x35</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Socket Address</b>, 16 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Protocol Family</b>, 2 (AF_INET), 16-bit Little-endian
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x02
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Port</b>, value=<span style="color:Lime"><b>6789</b></span>, 16-bit Big-endian
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x1A
+</td>
+<td style="background:MediumSlateBlue; color:white">0x85
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>IP address</b>, value=<span style="color:Lime"><b>192.168.0.2</b></span>, Big-endian
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0xC0
+</td>
+<td style="background:MediumSlateBlue; color:white">0xA8
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Unused</b> (arbitrary 8 bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+CC3000 acknowledges the reception of the data by emitting an <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_DATA_SENDTO_.280x100F.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_DATA_SENDTO (0x100F)</a>
+ event, which only confirms that the data has been received and stored 
+in the CC3000 internal transmission queue and not that it has already 
+been sent over the air.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="HCI_DATA_NVMEM_WRITE_.280x90.29">HCI_DATA_NVMEM_WRITE (0x90)</span></h1>
+<p>HCI_DATA_NVMEM_WRITE message is used to write to <a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide#CC3000_NVMEM_API.E2.80.99s" title="CC3000 Host Programming Guide"> CC3000 NVMEM/EEPROM</a>. HCI_DATA_NVMEM_WRITE can be used to write <a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide#CC3000_NVMEM_API.E2.80.99s" title="CC3000 Host Programming Guide"> NVMEM/EEPROM</a> areas for MAC-address, ServicePacks or user files (<a href="http://processors.wiki.ti.com/index.php/CC3000_Host_Programming_Guide#CC3000_NVMEM_API.E2.80.99s" title="CC3000 Host Programming Guide">file ID's 4-6,10,12-15</a>). The file ID entry to be written does need to be allocated first - see <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_CREATE_ENTRY_.280x0203.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_CREATE_ENTRY (0x0203)</a> how to achieve this.
+</p><p><br>
+The HCI_DATA_NVMEM_WRITE SPI message is as follows (an example of writing the <a href="http://processors.wiki.ti.com/index.php/CC3000_Smart_Config" title="CC3000 Smart Config"> SmartConfig</a> <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-128</a> encryption key <i><b>smartconfigAES16</b></i> to NVMEM_AES128_KEY_FILEID (file ID 12)):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>37</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x25</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, <span style="color:Lime"><b>37</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (5-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)=0x90
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x90
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=16
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x10
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>32</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x20</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>32</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 16 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>File ID</b>, value=<span style="color:Lime"><b>12</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0C</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>?</b>, value=12
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x0C
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Write length</b>, value=<span style="color:Lime"><b>16</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x10</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Write offset</b>, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>16</b></span> bytes, ASCII <span style="color:Lime"><i><b>smartconfigAES16</b></i></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x73</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x61</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x72</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x74</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x63</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6F</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6E</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x66</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x69</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x67</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x41</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x45</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x53</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x31</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x36</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+Note that the HCI Data message header does not explicitly include the 
+length of data field bytes, instead CC3000 calculates this by 
+subtracting the arguments length from the HCI payload length. The 
+HCI_DATA_NVMEM_WRITE message has always exactly 16 argument bytes and in
+ the example above 16 (this value is variable) data bytes are being 
+written to NVMEM/EEPROM, resulting in a total HCI payload of 32 bytes.
+</p><p><br>
+When the CC3000 has processed the HCI_DATA_NVMEM_WRITE, it answers with an <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NVMEM_WRITE_.280x0202.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NVMEM_WRITE (0x0202)</a> event.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="HCI_DATA_NVMEM_READ_.280x91.29">HCI_DATA_NVMEM_READ (0x91)</span></h1>
+<p>HCI_DATA_NVMEM_READ message is triggered by sending <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_READ_.280x0201.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_READ (0x0201)</a>. The direction of HCI_DATA_NVMEM_READ is always from CC3000 towards SPI master.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Example_reading_out_the_CC3000_MAC_address">Example reading out the CC3000 MAC address</span></h2>
+<p>The HCI_DATA_NVMEM_READ SPI message is as follows (example answer for
+ reading out the CC3000 MAC address at NVMEM file ID 6 with data length 
+of 6 bytes - see the command example in <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_READ_.280x0201.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_READ (0x0201)</a>):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>35</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x23</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, <span style="color:Lime"><b>35</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x91
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=24
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x18
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>30</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x1E</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>30</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 24 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>File ID</b>, value=<span style="color:Lime"><b>6</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x06</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read length</b>, value=<span style="color:Lime"><b>6</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x06</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read offset</b>, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>MAC Address</b></span>, <span style="color:Lime"><b>6</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x08</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x28</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x01</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x02</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x03</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+Note that the HCI Data message header does not explicitly include the 
+length of data field bytes, instead this is calculated by subtracting 
+the arguments length from the HCI payload length.
+</p><p>In the example message above, the MAC address from EEPROM is 
+being replied, with the value in the data field (08:00:28:01:02:03). The
+ six 32-bit arguments are not evaluated during HCI_DATA_NVMEM_READ by 
+the TI host driver software from <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Download_for_Windows_Environment" title="CC3000 Wi-Fi Downloads"> SDK</a>.
+</p><p>The <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Organizationally_Unique_Identifier">Organizationally Unique Identifier (OUI)</a> of CC3000 MAC address (the first 3 bytes of MAC address) is always 08:00:28, as this <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Organizationally_Unique_Identifier">OUI</a> identifies <a rel="nofollow" class="external text" href="http://www.ti.com/">Texas Instruments</a>.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Example_reading_out_the_SmartConfig_AES_key">Example reading out the SmartConfig AES key</span></h2>
+<p>Here's another example of reading the data from NVMEM file ID 12 with a data length of 16 bytes (NVMEM_AES128_KEY_FILEID, with <a href="http://processors.wiki.ti.com/index.php/CC3000_Smart_Config" title="CC3000 Smart Config"> SmartConfig</a> AES-128 key <i>smartconfigAES16</i>):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>45</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x2D</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, <span style="color:Lime"><b>45</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x91
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=24
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x18
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>40</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x28</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>40</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 24 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>File ID</b>, value=<span style="color:Lime"><b>12</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0C</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read length</b>, value=<span style="color:Lime"><b>16</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x10</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read offset</b>, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>AES-128 key</b></span>, <span style="color:Lime"><b>16</b></span> bytes, ASCII <span style="color:Lime"><i><b>smartconfigAES16</b></i></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x73</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x61</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x72</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x74</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x63</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6F</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x6E</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x66</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x69</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x67</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x41</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x45</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x53</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x31</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x36</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="Example_reading_out_the_SmartConfig_configuration_vector">Example reading out the SmartConfig configuration vector</span></h2>
+<p>When CC3000 receives <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-128</a> encrypted <a href="http://processors.wiki.ti.com/index.php/CC3000_Smart_Config" title="CC3000 Smart Config"> SmartConfig</a>
+ WLAN association data from it's peer, it saves the information as 67 
+byte long vector in the NVMEM file ID 13 (NVMEM_SHARED_MEM_FILEID). It 
+is up to user code to use this information, either to save to a profile 
+using <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_ADD_PROFILE_.280x0005.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_ADD_PROFILE (0x0005)</a> or just connect once to an access point using <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_CONNECT_.280x0001.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_CONNECT (0x0001)</a>.
+</p><p><br>
+The 67 byte long <a href="http://processors.wiki.ti.com/index.php/CC3000_Smart_Config" title="CC3000 Smart Config"> SmartConfig</a> WLAN association vector contains:
+</p>
+<ul><li> 1 byte, SSID length in binary</li>
+<li> 1 to 32 bytes, SSID name in ASCII</li>
+<li> 1 byte, key field length in binary (always 32 (hex 0x20) irrespective of the real key/passphrase length)</li>
+<li> 1 byte, WLAN security type (0=no security, 1=WEP, 2=WPA, 3=WPA2)</li>
+<li> 32 bytes, key/passphrase, optionally encrypted using <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-128</a> with 16-byte seed key specified in peer SmartConfig program/app</li>
+<li> Possibly some unused bytes at the end of 67 byte vector, if SSID length was less than 32.</li></ul>
+<p>The 32 byte long key/passphrase field contains in its first byte the 
+key length if the key is less than 32 bytes long, otherwise the 
+key/passphrase field is fully used to withhold the key.
+</p><p><br>
+Here's an example read response of <a href="http://processors.wiki.ti.com/index.php/CC3000_Smart_Config" title="CC3000 Smart Config"> SmartConfig</a> WLAN association vector (with SSID <i>"AP"</i>, WPA2 WLAN security and passphrase <i>"very_secret"</i> encrypted using <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-128</a>, the encryption method of <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#CC3000_SmartConfig" title="CC3000 Wi-Fi Downloads"> TI SmartConfig Apps</a>, key <i>smartconfigAES16</i>):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<span style="color:Lime"><b>97</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:green; color:white"><span style="color:Lime"><b>0x61</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, <span style="color:Lime"><b>97</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x91
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=24
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">0x18
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<span style="color:Lime"><b>91</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x5B</b></span>
+</td>
+<td style="background:LightSeaGreen"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <span style="color:Lime"><b>91</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Arguments</b>, 24 bytes, 32-bit Little-endian values
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>File ID</b>, value=<span style="color:Lime"><b>13</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read length</b>, value=<span style="color:Lime"><b>67</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x43</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"> <b>Read offset</b>, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td>
+<td style="background:MediumSlateBlue; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center">&nbsp;?, value=<span style="color:Lime"><b>0</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x00</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Data</b>, <span style="color:Lime"><b>SmartConfig configuration vector</b></span>, <span style="color:Lime"><b>67</b></span> bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>SSID length</b>, <span style="color:Lime"><b>2</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x02</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>SSID</b>, ASCII <span style="color:Lime"><i><b>AP</b></i></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x41</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x50</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Key field length</b>, 32
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x20
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>WLAN security</b>, <span style="color:Lime"><b>WPA2</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white">0x0<span style="color:Lime"><b>3</b></span>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>Key/Passphrase</b>, 32-bytes, <span style="color:Lime"><b>AES-128 enrypted <i>very_secret</i> (using AES-128 key <i>smartconfigAES16</i>)</b></span>
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xAB</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x4A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xAE</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x1D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0D</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x1E</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x42</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x37</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xA2</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x20</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xA6</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x73</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xEA</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xA1</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x58</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xC7</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xBE</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0C</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x41</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x3A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x8A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xFD</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xEB</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x19</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xAB</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x2A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xD1</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x4C</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x0A</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0xF1</b></span>
+</td>
+<td style="background:MediumSlateBlue; color:white"><span style="color:Lime"><b>0x92</b></span>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+The <a rel="nofollow" class="external text" href="http://software-dl.ti.com/ecs/simplelink/cc3000/public/doxygen_API/v1.12/html/index.html">CC3000 API</a> provides a method <a rel="nofollow" class="external text" href="http://software-dl.ti.com/ecs/simplelink/cc3000/public/doxygen_API/v1.12/html/group__security__api.html#ga7994e249d137cd905ba85b68e421c2ef">aes_decrypt</a> in order to decode <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-128</a> encrypted data. Here in detail how the bytes in the above example message field key/passphrase evaluate to WPA2 passphrase <i>"very_secret"</i> using  AES-128 key <i>smartconfigAES16</i>:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td> &nbsp;
+</td>
+<th colspan="16" align="center"> Block 1 (16-bytes)
+</th>
+<th colspan="16" align="center"> Block 2 (16-bytes)
+</th></tr>
+<tr>
+<th> Encrypted:
+</th>
+<td align="center"> AB
+</td>
+<td> 4A
+</td>
+<td> AE
+</td>
+<td> 1D
+</td>
+<td> 0D
+</td>
+<td> 1E
+</td>
+<td> 42
+</td>
+<td> 37
+</td>
+<td> A2
+</td>
+<td> 20
+</td>
+<td> A6
+</td>
+<td> 0A
+</td>
+<td> 73
+</td>
+<td> EA
+</td>
+<td> A1
+</td>
+<td> 58
+</td>
+<td> C7
+</td>
+<td> BE
+</td>
+<td> 0C
+</td>
+<td> 41
+</td>
+<td> 3A
+</td>
+<td> 8A
+</td>
+<td> FD
+</td>
+<td> EB
+</td>
+<td> 19
+</td>
+<td> AB
+</td>
+<td> 2A
+</td>
+<td> D1
+</td>
+<td> 4C
+</td>
+<td> 0A
+</td>
+<td> F1
+</td>
+<td> 92
+</td></tr>
+<tr>
+<th> Decrypted:
+</th>
+<td align="center"> 0B
+</td>
+<td> 76
+</td>
+<td> 65
+</td>
+<td> 72
+</td>
+<td> 79
+</td>
+<td> 5F
+</td>
+<td> 73
+</td>
+<td> 65
+</td>
+<td> 63
+</td>
+<td> 72
+</td>
+<td> 65
+</td>
+<td> 74
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td>
+<td> 00
+</td></tr>
+<tr>
+<th>ASCII:
+</th>
+<td>&lt;Length=11&gt;
+</td>
+<td align="center"> v
+</td>
+<td align="center"> e
+</td>
+<td align="center"> r
+</td>
+<td align="center"> y
+</td>
+<td align="center"> _
+</td>
+<td align="center"> s
+</td>
+<td align="center"> e
+</td>
+<td align="center"> c
+</td>
+<td align="center"> r
+</td>
+<td align="center"> e
+</td>
+<td align="center"> t
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td>
+<td> &nbsp;
+</td></tr></tbody></table>
+<p>Note that AES-128 is always calculated in 16 byte long blocks.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="Related_Pages">Related Pages</span></h1>
+<p>The following pages, can be useful as a reference:
+</p>
+<ol><li><a href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29" title="CC3000 Serial Port Interface (SPI)">Serial Port Interface</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_Protocol" title="CC3000 Protocol">Host Controller Interface</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages" title="CC3000 HCI CMND messages">HCI Command messages explained</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_PATCH_messages" title="CC3000 HCI PATCH messages">HCI Patch messages explained</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages" title="CC3000 HCI EVNT messages">HCI Event messages explained</a></li></ol>
+<p><br>
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.176 seconds
+Real time usage: 0.191 seconds
+Preprocessor visited node count: 278/1000000
+Preprocessor generated node count: 526/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key davincid_wikidb:pcache:idhash:33818-0!*!0!!en!*!* and timestamp 20160328181715 and revision id 199034
+ -->
+<div class="hf-footer"></div><div class="hf-nsfooter"><table style="text-align:center; background:white; width:100%; text-align:left; height: 65px border-top: 1px solid; border-bottom: 1px solid; border-left: 1px solid; border-right: 1px solid; border-width: 1px; border-style: solid;">
+<tbody><tr>
+<td width="305px"><a href="http://processors.wiki.ti.com/index.php/File:E2e.jpg" class="image"><img alt="E2e.jpg" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/E2e.jpg" height="63" width="305"></a>
+</td>
+<td><i>For technical support please post your questions at <a rel="nofollow" class="external free" href="http://e2e.ti.com/">http://e2e.ti.com</a>. Please post only comments about the article <b>CC3000 HCI DATA messages</b> here.</i>
+</td></tr></tbody></table>
+<table style="border-style:solid; border-width:1px; text-align:center; width:100%;">
+
+<tbody><tr style="font-size:150%;">
+<td rowspan="2"> <a href="http://processors.wiki.ti.com/index.php/File:Hyperlink_blue.png" class="image"><img alt="Hyperlink blue.png" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/Hyperlink_blue.png" height="96" width="96"></a>
+</td>
+<td><b>Links</b>
+</td></tr>
+<tr>
+<td>
+<table style="text-align: left;">
+<tbody><tr>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/amplifier_and_linear.page">Amplifiers &amp; Linear</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/audio/audio_overview.page">Audio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/rfif.page">Broadband RF/IF &amp; Digital Radio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/clocksandtimers/clocks_and_timers.page">Clocks &amp; Timers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/dataconverters/data_converter.page">Data Converters</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/mems/mems.page">DLP &amp; MEMS</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/high_reliability.page">High-Reliability</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/interface/interface.page">Interface</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/logic/home_overview.page">Logic</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/powermanagement/power_portal.page">Power Management</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/embedded_processor.page">Processors</a>
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/arm.page">ARM Processors</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/home.page">Digital Signal Processors (DSP)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/microcontroller/home.page">Microcontrollers (MCU)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/omap-applications-processors/the-omap-experience.page">OMAP Applications Processors</a></li></ul>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/switches_and_multiplexers.page">Switches &amp; Multiplexers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/temperature_sensor.page">Temperature Sensors &amp; Control ICs</a><br>
+<a rel="nofollow" class="external text" href="http://focus.ti.com/wireless/docs/wirelessoverview.tsp?familyId=2003&amp;sectionId=646&amp;tabId=2735">Wireless Connectivity</a>
+</p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><!-- HitBox Sub accounts Code START -->
+<script language="JavaScript" src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/metrics-min.js" type="text/javascript"></script>
+<!-- HitBox Sub accounts Code END -->
+</p></div></div>									<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;oldid=199034">http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;oldid=199034</a>"					</div>
+													<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://processors.wiki.ti.com/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="http://processors.wiki.ti.com/index.php/Category:CC3000" title="Category:CC3000">CC3000</a></li><li><a href="http://processors.wiki.ti.com/index.php/Category:Documentation" title="Category:Documentation">Documentation</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="http://processors.wiki.ti.com/index.php?title=Special:UserLogin&amp;returnto=CC3000+HCI+DATA+messages" title="You are encouraged to log in; however, it is not mandatory [Alt+Shift+o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="http://processors.wiki.ti.com/index.php/Special:RequestAccount" title="You are encouraged to create an account and log in; however, it is not mandatory">Request account</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages" title="View the content page [Alt+Shift+c]" accesskey="c">Page</a></span></li>
+															<li id="ca-talk" class="new"><span><a href="http://processors.wiki.ti.com/index.php?title=Talk:CC3000_HCI_DATA_messages&amp;action=edit&amp;redlink=1" title="Discussion about the content page [Alt+Shift+t]" accesskey="t">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 tabindex="0" id="p-variants-label"><span>Variants</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages">Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;action=edit" title="This page is protected.
+You can view its source [Alt+Shift+e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;action=history" title="Past revisions of this page [Alt+Shift+h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div style="" id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 tabindex="0" id="p-cactions-label"><span>More</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/index.php" id="searchform">
+														<div id="simpleSearch">
+															<input autocomplete="off" tabindex="1" name="search" placeholder="Search" title="Search Texas Instruments Wiki [Alt+Shift+f]" accesskey="f" id="searchInput" type="search"><input value="Special:Search" name="title" type="hidden"><input name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" type="submit">								</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal first" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+			<h3 id="p-navigation-label">Navigation</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-mainpage"><a href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page [Alt+Shift+z]" accesskey="z">Main Page</a></li>
+													<li id="n-All-pages"><a href="http://processors.wiki.ti.com/index.php/Special:AllPages">All pages</a></li>
+													<li id="n-All-categories"><a href="http://processors.wiki.ti.com/index.php/Special:Categories">All categories</a></li>
+													<li id="n-recentchanges"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [Alt+Shift+r]" accesskey="r">Recent changes</a></li>
+													<li id="n-randompage"><a href="http://processors.wiki.ti.com/index.php/Special:Random" title="Load a random page [Alt+Shift+x]" accesskey="x">Random page</a></li>
+													<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+			<h3 id="p-coll-print_export-label">Print/export</h3>
+
+			<div class="body">
+									<ul>
+													<li id="coll-create_a_book"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=CC3000+HCI+DATA+messages">Create a book</a></li>
+													<li id="coll-download-as-rl"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=CC3000+HCI+DATA+messages&amp;oldid=199034&amp;writer=rl">Download as PDF</a></li>
+													<li id="t-print"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;printable=yes" title="Printable version of this page [Alt+Shift+p]" accesskey="p">Printable version</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Toolbox</h3>
+
+			<div class="body">
+									<ul>
+													<li id="t-whatlinkshere"><a href="http://processors.wiki.ti.com/index.php/Special:WhatLinksHere/CC3000_HCI_DATA_messages" title="A list of all wiki pages that link here [Alt+Shift+j]" accesskey="j">What links here</a></li>
+													<li id="t-recentchangeslinked"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChangesLinked/CC3000_HCI_DATA_messages" title="Recent changes in pages linked from this page [Alt+Shift+k]" accesskey="k">Related changes</a></li>
+													<li id="t-specialpages"><a href="http://processors.wiki.ti.com/index.php/Special:SpecialPages" title="A list of all special pages [Alt+Shift+q]" accesskey="q">Special pages</a></li>
+													<li id="t-permalink"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;oldid=199034" title="Permanent link to this revision of the page">Permanent link</a></li>
+													<li id="t-info"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_HCI_DATA_messages&amp;action=info" title="More information about this page">Page information</a></li>
+											</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 3 May 2015, at 17:41.</li>
+											<li id="footer-info-viewcount">This page has been accessed 443 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://processors.wiki.ti.com/index.php/Project:Privacy_policy" title="Project:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="http://processors.wiki.ti.com/index.php/Project:About" title="Project:About">About Texas Instruments Wiki</a></li>
+											<li id="footer-places-disclaimer"><a href="http://processors.wiki.ti.com/index.php/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-termsofservice"><a href="http://processors.wiki.ti.com/index.php/Project:Terms_of_Service" title="Project:Terms of Service">Terms of Use</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+															<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike" height="31" width="88"></a>
+													</li>
+											<li id="footer-poweredbyico">
+															<a href="http://www.mediawiki.org/"><img src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" height="31" width="88"></a>
+													</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script><div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"http://processors.wiki.ti.com/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/load_004.php"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="CC3000%20HCI%20DATA%20messages%20-%20Texas%20Instruments%20Wiki_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-3008403-2");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":731});
+}</script>
+	
+
+</body></html>

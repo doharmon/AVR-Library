@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.2</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>{26d35e3a-cb13-4c3d-bee0-fe0246fc02d9}</ProjectGuid>
+    <avrdevice>ATmega328P</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>test_seatalk</AssemblyName>
+    <Name>test_seatalk</Name>
+    <RootNamespace>test_seatalk</RootNamespace>
+    <ToolchainFlavour>3.5.4</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.29.0" />
+        </dependencies>
+      </framework-data>
+    </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolOptions xmlns="">
+        <InterfaceProperties>
+        </InterfaceProperties>
+      </ToolOptions>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <ToolName xmlns="">Simulator</ToolName>
+    </com_atmel_avrdbg_tool_simulator>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+      </AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>DEBUG</Value>
+      <Value>F_CPU=16000000UL</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\source\lib_seatalk\SeaTalk.h">
+      <SubType>compile</SubType>
+      <Link>SeaTalk.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_seatalk\SeaTalk.s">
+      <SubType>compile</SubType>
+      <Link>SeaTalk.s</Link>
+    </Compile>
+    <Compile Include="..\source\lib_seatalk\SeaTalk_boards.h">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_boards.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_seatalk\SeaTalk_config.h">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_config.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_seatalk\SeaTalk_timers.h">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_timers.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_timer\Timer.c">
+      <SubType>compile</SubType>
+      <Link>Timer.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_timer\Timer.h">
+      <SubType>compile</SubType>
+      <Link>Timer.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_uart\uart.c">
+      <SubType>compile</SubType>
+      <Link>uart.c</Link>
+    </Compile>
+    <Compile Include="..\source\lib_uart\uart.h">
+      <SubType>compile</SubType>
+      <Link>uart.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_xio\xio.h">
+      <SubType>compile</SubType>
+      <Link>xio.h</Link>
+    </Compile>
+    <Compile Include="..\source\lib_xio\xio.s">
+      <SubType>compile</SubType>
+      <Link>xio.s</Link>
+    </Compile>
+    <Compile Include="test_seatalk.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\source\common\macros.inc">
+      <SubType>compile</SubType>
+      <Link>macros.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk_macros.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_macros.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk_rx_funcs.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_rx_funcs.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk_rx_ir.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_rx_ir.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk_timer.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_timer.inc</Link>
+    </None>
+    <None Include="..\source\lib_seatalk\SeaTalk_tx.inc">
+      <SubType>compile</SubType>
+      <Link>SeaTalk_tx.inc</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>

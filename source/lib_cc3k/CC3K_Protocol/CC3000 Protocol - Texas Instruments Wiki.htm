@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>CC3000 Protocol - Texas Instruments Wiki</title>
+<meta name="generator" content="MediaWiki 1.25.1">
+<link rel="shortcut icon" href="http://processors.wiki.ti.com/favicon.ico"><style type="text/css">:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+<link rel="search" type="application/opensearchdescription+xml" href="http://processors.wiki.ti.com/opensearch_desc.php" title="Texas Instruments Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://processors.wiki.ti.com/api.php?action=rsd">
+<link rel="alternate" hreflang="x-default" href="http://processors.wiki.ti.com/index.php/CC3000_Protocol">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Texas Instruments Wiki Atom feed" href="http://processors.wiki.ti.com/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load.css">
+<style>
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:e1ffd603cbaaa5f1a36e0d13fe843535 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:f8d0c6895ce3ae14434c16b8fca59432 */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(/resources/src/mediawiki.action/images/green-checkmark.png?2014-10-01T12:38:20Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:b7714e8f038e3865508d553d58b1f7e6 */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load_002.css">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: davincid_wikidb:resourceloader:filter:minify-css:7:70500b672b667d946e900b286b62c126 */</style>
+<script id="tealium-tag-7110" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/analytics.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_52" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/conversion_async.js" charset="utf-8" async="" type="text/javascript"></script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/i.js" type="text/javascript"></script><script async="" type="text/javascript" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag.js"></script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load_003.php"></script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"CC3000_Protocol","wgTitle":"CC3000 Protocol","wgCurRevisionId":182962,"wgRevisionId":182962,"wgArticleId":33483,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["CC3000","Simplelink","Documentation"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"CC3000_Protocol","wgRelevantArticleId":33483,"wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":true,"publish":false},"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":false,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+/* cache key: davincid_wikidb:resourceloader:filter:minify-js:7:a5c52c063dc436c1ca7c9f456936a5e9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load_002.php"></script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/Vector/csshover.min.htc")}</style><![endif]-->
+<script id="utag_ti.main_4" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_005.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_52" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_004.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_106" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_007.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_124" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_002.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_137" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_003.js" charset="utf-8" async="" type="text/javascript"></script><script id="utag_ti.main_87" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/utag_006.js" charset="utf-8" async="" type="text/javascript"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-CC3000_Protocol skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice"><div id="localNotice" dir="ltr" lang="en"><p><br>
+</p></div></div>
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">CC3000 Protocol</span></h1>
+						<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Texas Instruments Wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><div class="hf-nsheader"><script language="Javascript">
+var tiContentGroup;
+var tiwikicat = (typeof(mw.config.values.wgCategories[0]) === "undefined"? "":mw.config.values.wgCategories[0]);
+tiContentGroup = "/DSP/wiki/Ext/" +tiwikicat;
+var tiPageName;
+tiPageName = 'wiki/CC3000_Protocol';
+</script></div><div class="hf-header"></div><p><a href="http://processors.wiki.ti.com/index.php/CC3000" title="CC3000"> Return to CC3000 Main page</a>
+</p><p>This page addresses the logical communication protocol between 
+the CC3000 wireless module and SPI host. For physical communication 
+details, please see <a href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29" title="CC3000 Serial Port Interface (SPI)"> CC3000 Serial Port Interface (SPI)</a>.
+</p><p>The content of this page applies to CC3000 <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Patch_Programmer" title="CC3000 Wi-Fi Downloads">Service Pack v1.12</a> (CC3000 firmware version 1.26).
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#WRITE_SPI_packet"><span class="tocnumber">1</span> <span class="toctext">WRITE SPI packet</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#WRITE_protocol_in_MOSI_direction"><span class="tocnumber">1.1</span> <span class="toctext">WRITE protocol in MOSI direction</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#WRITE_protocol_in_MISO_direction"><span class="tocnumber">1.2</span> <span class="toctext">WRITE protocol in MISO direction</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#READ_SPI_packet"><span class="tocnumber">2</span> <span class="toctext">READ SPI packet</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#READ_protocol_in_MOSI_direction"><span class="tocnumber">2.1</span> <span class="toctext">READ protocol in MOSI direction</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#READ_protocol_in_MISO_direction"><span class="tocnumber">2.2</span> <span class="toctext">READ protocol in MISO direction</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#SPI_Payload"><span class="tocnumber">3</span> <span class="toctext">SPI Payload</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#HCI_Command_message"><span class="tocnumber">3.1</span> <span class="toctext">HCI Command message</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#HCI_Data_message"><span class="tocnumber">3.2</span> <span class="toctext">HCI Data message</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#HCI_Data_message_in_MOSI_direction"><span class="tocnumber">3.2.1</span> <span class="toctext">HCI Data message in MOSI direction</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#HCI_Data_message_in_MISO_direction"><span class="tocnumber">3.2.2</span> <span class="toctext">HCI Data message in MISO direction</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#HCI_Patch_message"><span class="tocnumber">3.3</span> <span class="toctext">HCI Patch message</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#HCI_Event_message"><span class="tocnumber">3.4</span> <span class="toctext">HCI Event message</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Related_Pages"><span class="tocnumber">4</span> <span class="toctext">Related Pages</span></a></li>
+</ul>
+</div>
+
+<p><br>
+All communication between the CC3000 and SPI host (e.g., a 
+microcontroller) is carried out using SPI packets, and thus the SPI 
+packet forms the outermost logical protocol layer. A single SPI packet 
+is transferred always within a single active chip select period (between
+ one falling and rising nCS edge). The CC3000 protocol offers no means 
+to fragment packets, thus all data belonging to a single packet must be 
+sent inside one nCS active period.
+</p><p>Every packet transfered over the SPI-Bus consists of 5-byte long 
+SPI header followed by data bytes (SPI Payload). The CC3000 expects 
+16-bit aligned SPI communications, thus a SPI packet must always have 
+even number of bytes. In case the data to be transported has odd bytes 
+of data, an additional padding byte must be added. Although the 
+documentation recommends to use 0x00 for padding byte, experimentation 
+shows that the value is not being evaluated and thus could be arbitrary.
+</p><p><br>
+Every SPI packet exchanged between the CC3000 and the SPI host have to adhere to the following schema:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"> Byte 1
+</td>
+<td style="background:green; color:white"> Byte 2
+</td>
+<td style="background:green; color:white"> Byte 3
+</td>
+<td style="background:green; color:white"> Byte 4
+</td>
+<td style="background:green; color:white"> Byte 5
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload (data+optional padding)</b>, Min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange"> Byte 1
+</td>
+<td style="background:DarkOrange"> Byte 2
+</td>
+<td style="background:DarkOrange"> ...
+</td>
+<td style="background:DarkOrange"> Byte <i>x</i>; 5 ≤ <i>x</i> ≤ 65535
+</td>
+<td style="background:DarkOrange">Optional padding byte to achieve even byte long SPI packet
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+The shortest by CC3000 implemented packet has 5 byte SPI payload, thus the shortest SPI paket length is 10 bytes.
+</p><p>The fields in the 5-byte SPI header have different meaning, according to the direction of communication.
+</p><p>As SPI-Bus is under full control of SPI master, the master has to
+ select either to push (write) or pull (read) data from CC3000 module. 
+The first byte of every SPI packet the SPI master sends out defines the <i>Operation Code</i>. The <i>Operation Code</i> field has only two possibilites:
+</p>
+<ul><li> <b>0x01</b> for <b>WRITE</b></li>
+<li> <b>0x03</b> for <b>READ</b></li></ul>
+<p><br>
+Although the SPI-Bus is capable of full duplex communications, the 
+CC3000 SPI communication protocol is implemented in a half-duplex 
+manner: if the SPI master is sending data towards CC3000 on the MOSI 
+line, the bytes originating from CC3000 can be ignored; and vice versa 
+when the CC3000 sends data to the SPI master on the MISO line, the 
+CC3000 will not interpret the incoming bytes on the MOSI line.
+</p><p>Every SPI packet starts with SPI master sending the <i>Operation Code</i> byte towards CC3000. After the <i>Operation Code</i>,
+ the selection of WRITE or READ is valid and cannot be changed until the
+ end of current SPI packet (until nCS goes back high). In case when the <i>Operation Code</i>
+ was 0x01=WRITE, the SPI master continues transmitting further bytes on 
+the MOSI line and the CC3000 continues sampling the incoming bytes. If 
+the <i>Operation Code</i> was 0x02=READ, the CC3000 ignores further 
+bytes from the SPI master on the MOSI line, and starts answering with 
+data bytes on the MISO line.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="WRITE_SPI_packet">WRITE SPI packet</span></h1>
+<h2><span class="mw-headline" id="WRITE_protocol_in_MOSI_direction">WRITE protocol in MOSI direction</span></h2>
+<p>SPI MOSI WRITE packet is made of a SPI header and SPI payload. The 
+SPI header consists always of 5 bytes, whereas the SPI payload length 
+can vary to fit the transported data length. In case the SPI header plus
+ payload length have odd amount of bytes, an additional padding byte is 
+added to make SPI paket 16-bit aligned as required by CC3000.
+</p><p>The schema of a MOSI SPI WRITE packet:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center">Operation Code <b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload (data+optional padding)</b>, Length=<i>n</i>, min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange"> Byte 1
+</td>
+<td style="background:DarkOrange"> Byte 2
+</td>
+<td style="background:DarkOrange"> ...
+</td>
+<td style="background:DarkOrange"> Byte x
+</td>
+<td style="background:DarkOrange">Optional padding byte to achieve even byte long SPI packet
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>Note that the payload length in bytes 2 and 3 includes also the 
+optional padding byte. The SPI header 4th and 5th byte are so called <i>Busy Bytes</i>, to allow some time for CC3000 to prepare the payload. CC3000 datasheet recommends to use value 0x00 for both bytes.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="WRITE_protocol_in_MISO_direction">WRITE protocol in MISO direction</span></h2>
+<p>During WRITE, the CC3000 publishes on MISO line:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02 (always)
+</td>
+<td style="background:green; color:white">0x00 (always)
+</td>
+<td style="background:green; color:white">0xFF
+</td>
+<td style="background:green; color:white">0x00
+</td>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">0x00
+</td>
+<td style="background:DarkOrange">0x00
+</td>
+<td style="background:DarkOrange">0x00
+</td>
+<td style="background:DarkOrange">...
+</td>
+<td style="background:DarkOrange">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>The first two packet bytes the CC3000 outputs on MISO line are independent of MOSI <i>Operation Code</i>
+ always 0x02 and 0x00. The MISO packet length is the same as MOSI SPI 
+WRITE packet, all bytes in the MISO payload are 0x00. The SPI master can
+ ignore all bytes sent out by the CC3000 during a WRITE command.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="READ_SPI_packet">READ SPI packet</span></h1>
+<p>In case the CC3000 has an event or data to transmit to SPI master, it
+ pulls the IRQ line low. It is up to SPI master to react to this (e.g., 
+using a falling edge interrupt configured pin) and to read out the data 
+using a READ packet.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="READ_protocol_in_MOSI_direction">READ protocol in MOSI direction</span></h2>
+<p>When SPI master wants to read in data from CC3000, it should first clock out on MOSI line the <i>Operation command</i> 0x03 READ and 4 further bytes. Although the CC3000 datasheet recommends the bytes following the <i>Operation code</i> to have a value of 0x00, they do not get evaluated by CC3000 and thus can be arbitrary. (The host driver in <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Download_for_Windows_Environment" title="CC3000 Wi-Fi Downloads"> SDK</a>
+ also does not adhere to the datasheet recomendation and uses 0x03 for 
+all MOSI bytes during a READ packet.) The CC3000 answers in bytes 4 and 5
+ with the payload length it wishes to transmit, lets call this 16-bit 
+value <i>n</i>. After the initial 5 bytes, the SPI master should continue to clock in/out <i>n</i> bytes before raising the nCS line back high. Note that <i>n</i> is always an odd value to adhere to even SPI packet length rule.
+</p><p>The schema of a MOSI SPI READ packet (<i>n</i> is the payload length sent in at MISO bytes 4 and 5):
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center">Operation Code <b>READ</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x03
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center">4 arbitrary bytes, e.g.:
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td>
+<td style="background:green; color:white">0x00
+</td>
+<td style="background:green; color:white">0x00
+</td>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange"> <i>n</i> arbitrary bytes
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="READ_protocol_in_MISO_direction">READ protocol in MISO direction</span></h2>
+<p>The CC3000 replies to SPI READ on MISO line as follows:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> Operation Code <b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange"><i>n</i> bytes
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>Note that the payload length in bytes 4 and 5 includes also the optional padding byte.
+</p><p><br>
+</p>
+<h1><span class="mw-headline" id="SPI_Payload">SPI Payload</span></h1>
+<p>In the SPI payload, Host Controller Interface (HCI) messages are 
+exchanged between the SPI master and the CC3000. Using HCI messages the 
+SPI master can interact with CC3000.
+There are 4 types of HCI messages (you'll find the same color coding in 
+the packets below for easier recognition):
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Description
+</th>
+<th>Direction
+</th>
+<th>TI abbrevation
+</th>
+<th>Code
+</th></tr>
+<tr>
+<td style="background:IndianRed; color:white"> Command
+</td>
+<td style="background:IndianRed; color:white"> SPI master -&gt; CC3000
+</td>
+<td style="background:IndianRed; color:white"> <b>HCI_TYPE_CMND</b>
+</td>
+<td style="background:IndianRed; color:white"> 0x01
+</td></tr>
+<tr>
+<td style="background:Silver"> Data
+</td>
+<td style="background:Silver"> both ways
+</td>
+<td style="background:Silver"> <b>HCI_TYPE_DATA</b>
+</td>
+<td style="background:Silver"> 0x02
+</td></tr>
+<tr>
+<td style="background:Yellow"> Patch
+</td>
+<td style="background:Yellow"> SPI master -&gt; CC3000
+</td>
+<td style="background:Yellow"> <b>HCI_TYPE_PATCH</b>
+</td>
+<td style="background:Yellow"> 0x03
+</td></tr>
+<tr>
+<td style="background:Peru; color:white"> Event
+</td>
+<td style="background:Peru; color:white"> CC3000 -&gt; SPI master
+</td>
+<td style="background:Peru; color:white"> <b>HCI_TYPE_EVNT</b>
+</td>
+<td style="background:Peru; color:white"> 0x04
+</td></tr></tbody></table>
+<p>Each HCI message is preluded with a header, with first byte of the 
+header being the type. The length of the HCI header and the following 
+field bytes are type-specific and thus will be handled separately next.
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="HCI_Command_message">HCI Command message</span></h2>
+<p>HCI command message is sent by SPI master towards CC3000 to trigger 
+an action or data request, thus only MOSI direction HCI command message 
+is defined.
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 5, max. 259 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (4-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:IndianRed; color:white" align="center"> <b>HCI_TYPE_CMND</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:IndianRed; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Command operation code (16-bit Little-endian)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Low byte
+</td>
+<td style="background:LightSeaGreen">High byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=<i>p</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white"><b>HCI payload</b>, <i>p</i> bytes; 0 ≤ <i>p</i> ≤ 255
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+The options for the <i>Command operation code</i> (possibly not a full 
+list with all options. Note that the code in this table is the value, 
+and not the Little-endian formation as in the original SPI packet):
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Operation code
+</th>
+<th>Hex value
+</th>
+<th>Arguments length
+</th></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_CONNECT_.280x0001.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_CONNECT</a>
+</td>
+<td>0x0001
+</td>
+<td>Minimum 29 <i>(28 + min SSID length 1)</i>, maximum 92 <i>(28 + max SSID length 32 + max key length 32)</i>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_DISCONNECT_.280x0002.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_DISCONNECT</a>
+</td>
+<td>0x0002
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SET_SCANPARAM_.280x0003.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SET_SCANPARAM</a>
+</td>
+<td>0x0003
+</td>
+<td>100
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SET_CONNECTION_POLICY_.280x0004.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SET_CONNECTION_POLICY</a>
+</td>
+<td>0x0004
+</td>
+<td>12
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_ADD_PROFILE_.280x0005.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_ADD_PROFILE</a>
+</td>
+<td>0x0005
+</td>
+<td>Minimum 25 <i>(24 + min SSID length 1)</i>, maximum 120 <i>(36 + max SSID length 32 + 4* max WEP key length 13 bytes)</i>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_DEL_PROFILE_.280x0006.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_DEL_PROFILE</a>
+</td>
+<td>0x0006
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_GET_SCAN_RESULTS_.280x0007.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_GET_SCAN_RESULTS</a>
+</td>
+<td>0x0007
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_SET_EVENT_MASK_.280x0008.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_SET_EVENT_MASK</a>
+</td>
+<td>0x0008
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_STATUSGET_.280x0009.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_STATUSGET</a>
+</td>
+<td>0x0009
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_START_.280x000A.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_START</a>
+</td>
+<td>0x000A
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_STOP_.280x000B.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_STOP</a>
+</td>
+<td>0x000B
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX_.280x000C.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX</a>
+</td>
+<td>0x000C
+</td>
+<td>3
+</td></tr>
+<tr>
+<td>HCI_CMND_WLAN_CONFIGURE_PATCH
+</td>
+<td>0x000D
+</td>
+<td><b>?</b>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_READ_.280x0201.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_READ</a>
+</td>
+<td>0x0201
+</td>
+<td>12
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_CREATE_ENTRY_.280x0203.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_CREATE_ENTRY</a>
+</td>
+<td>0x0203
+</td>
+<td>8
+</td></tr>
+<tr>
+<td>HCI_CMND_NVMEM_WRITE_PATCH
+</td>
+<td>0x0204
+</td>
+<td><b>?</b>
+</td></tr>
+<tr>
+<td>HCI_CMND_NVMEM_SWAP_ENTRY
+</td>
+<td>0x0205
+</td>
+<td><b>?</b>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_READ_SP_VERSION_.280x0207.29" title="CC3000 HCI CMND messages"> HCI_CMND_READ_SP_VERSION</a>
+</td>
+<td>0x0207
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SOCKET_.280x1001.29" title="CC3000 HCI CMND messages"> HCI_CMND_SOCKET</a>
+</td>
+<td>0x1001
+</td>
+<td>12
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_BIND_.280x1002.29" title="CC3000 HCI CMND messages"> HCI_CMND_BIND</a>
+</td>
+<td>0x1002
+</td>
+<td>20
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_RECV_.280x1004.29" title="CC3000 HCI CMND messages"> HCI_CMND_RECV</a>
+</td>
+<td>0x1004
+</td>
+<td>12
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_ACCEPT_.280x1005.29" title="CC3000 HCI CMND messages"> HCI_CMND_ACCEPT</a>
+</td>
+<td>0x1005
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_LISTEN_.280x1006.29" title="CC3000 HCI CMND messages"> HCI_CMND_LISTEN</a>
+</td>
+<td>0x1006
+</td>
+<td>8
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_CONNECT_.280x1007.29" title="CC3000 HCI CMND messages"> HCI_CMND_CONNECT</a>
+</td>
+<td>0x1007
+</td>
+<td>20
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SELECT_.280x1008.29" title="CC3000 HCI CMND messages"> HCI_CMND_SELECT</a>
+</td>
+<td>0x1008
+</td>
+<td>44
+</td></tr>
+<tr>
+<td>HCI_CMND_SETSOCKOPT
+</td>
+<td>0x1009
+</td>
+<td>24
+</td></tr>
+<tr>
+<td>HCI_CMND_GETSOCKOPT
+</td>
+<td>0x100A
+</td>
+<td>12
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_CLOSE_SOCKET_.280x100B.29" title="CC3000 HCI CMND messages"> HCI_CMND_CLOSE_SOCKET</a>
+</td>
+<td>0x100B
+</td>
+<td>4
+</td></tr>
+<tr>
+<td>HCI_CMND_RECVFROM
+</td>
+<td>0x100D
+</td>
+<td>12
+</td></tr>
+<tr>
+<td>HCI_CMND_GETHOSTNAME
+</td>
+<td>0x1010
+</td>
+<td>Minimum 8 + shortest host name length (1&nbsp;?), maximum =<b>?</b>
+</td></tr>
+<tr>
+<td>HCI_CMND_MDNS_ADVERTISE
+</td>
+<td>0x1011
+</td>
+<td>Minimum 12 + shortest own host name length (1&nbsp;?), maximum =<b>?</b>
+</td></tr>
+<tr>
+<td>HCI_CMND_GETMSSVALUE
+</td>
+<td>0x1012
+</td>
+<td>4
+</td></tr>
+<tr>
+<td>HCI_CMND_NETAPP_DHCP
+</td>
+<td>0x2001
+</td>
+<td>20
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_SEND_.280x2002.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_SEND</a>
+</td>
+<td>0x2002
+</td>
+<td>16
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_REPORT_.280x2003.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_REPORT</a>
+</td>
+<td>0x2003
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_STOP_.280x2004.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_STOP</a>
+</td>
+<td>0x2004
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_GETIPCONFIG_.280x2005.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_GETIPCONFIG</a>
+</td>
+<td>0x2005
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_ARP_FLUSH_.280x2006.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_ARP_FLUSH</a>
+</td>
+<td>0x2006
+</td>
+<td>0
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_SET_DEBUG_LEVEL_.280x2008.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_SET_DEBUG_LEVEL</a>
+</td>
+<td>0x2008
+</td>
+<td>4
+</td></tr>
+<tr>
+<td>HCI_CMND_NETAPP_SET_TIMERS
+</td>
+<td>0x2009
+</td>
+<td>20
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SIMPLE_LINK_START_.280x4000.29" title="CC3000 HCI CMND messages"> HCI_CMND_SIMPLE_LINK_START</a>
+</td>
+<td>0x4000
+</td>
+<td>1
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_READ_BUFFER_SIZE_.280x400B.29" title="CC3000 HCI CMND messages"> HCI_CMND_READ_BUFFER_SIZE</a>
+</td>
+<td>0x400B
+</td>
+<td>0
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="HCI_Data_message">HCI Data message</span></h2>
+<p>HCI Data messages can be transported in both directions - from SPI 
+master to CC3000 (for example to send data over a wireless link) or 
+other way around (for example to receive data over the wireless link). 
+HCI Data message can carry two types of payload information: arguments 
+and data.
+</p><p>The HCI part of the message is defined similarly in both 
+directions, but the SPI header is different. For the sake of clarity 
+full SPI packets are shown for both directions below separately.
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id="HCI_Data_message_in_MOSI_direction">HCI Data message in MOSI direction</span></h3>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (5-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=<i>p</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<i>m</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Low byte
+</td>
+<td style="background:LightSeaGreen">High byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <i>m</i> bytes; 0 ≤ <i>m</i> ≤ 65530
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><b>Arguments</b>, <i>p</i> bytes; 0 ≤ <i>p</i> ≤ 255
+</td>
+<td style="background:MediumSlateBlue; color:white"><b>Data</b>, <i>m</i>-<i>p</i> bytes; 0 ≤ <i>m</i>-<i>p</i> ≤ 65530
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p>Note that the HCI Data message does not explicitly include the amount
+ of data bytes in the packet, instead this needs to be calculated by 
+subtracting the arguments length from the HCI payload length.
+</p><p><br>
+The options for MOSI <i>Data operation code</i> (possibly not a full list with all options):
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Operation code
+</th>
+<th>Hex value
+</th></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_SEND_.280x81.29" title="CC3000 HCI DATA messages"> HCI_DATA_SEND</a>
+</td>
+<td>0x81
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_SENDTO_.280x83.29" title="CC3000 HCI DATA messages"> HCI_DATA_SENDTO</a>
+</td>
+<td>0x83
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_NVMEM_WRITE_.280x90.29" title="CC3000 HCI DATA messages"> HCI_DATA_NVMEM_WRITE</a>
+</td>
+<td>0x90
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h3><span class="mw-headline" id="HCI_Data_message_in_MISO_direction">HCI Data message in MISO direction</span></h3>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 5, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (5-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver" align="center"> <b>HCI_TYPE_DATA</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Silver">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Data operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=<i>p</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Payload length (16-bit Little-endian)=<i>m</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Low byte
+</td>
+<td style="background:LightSeaGreen">High byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <i>m</i> bytes; 0 ≤ <i>m</i> ≤ 65530
+<table border="1">
+
+<tbody><tr>
+<td style="background:MediumSlateBlue; color:white"><b>Arguments</b>, <i>p</i> bytes; 0 ≤ <i>p</i> ≤ 255
+</td>
+<td style="background:MediumSlateBlue; color:white"><b>Data</b>, <i>m</i>-<i>p</i> bytes; 0 ≤ <i>m</i>-<i>p</i> ≤ 65530
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+Note that the data message from CC3000 needs to be clocked in by SPI master using a <a href="#READ_protocol_in_MOSI_direction">READ protocol</a>.
+</p><p><br>
+The options for MISO <i>Data operation code</i> (possibly not a full list with all options):
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Operation code
+</th>
+<th>Hex value
+</th></tr>
+<tr>
+<td>HCI_DATA_RECVFROM
+</td>
+<td>0x84
+</td></tr>
+<tr>
+<td>HCI_DATA_RECV
+</td>
+<td>0x85
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_NVMEM_READ_.280x91.29" title="CC3000 HCI DATA messages"> HCI_DATA_NVMEM_READ</a>
+</td>
+<td>0x91
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h2><span class="mw-headline" id="HCI_Patch_message">HCI Patch message</span></h2>
+<p>The TI CC3000 module includes the CC3000 chipset and also an 32KB 
+EEPROM, which among other information, contains three end-user 
+servicable code fragments, so called patches:
+</p>
+<ul><li> bootloader</li>
+<li> WLAN driver ROM</li>
+<li> WLAN firmware</li></ul>
+<p><br>
+From time to time, TI provides an updated <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Patch_Programmer" title="CC3000 Wi-Fi Downloads"> Service Pack</a>
+ for CC3000 that updates these code segments with bugfixed code or new 
+features. Altough the TI Patch Programmer (at least in version 1.12) 
+uses HCI_CMND_NVMEM_WRITE command (see <a href="#HCI_Command_message"> above</a>)
+ to (re-)write the EEPROM segments, the CC3000 supports also a dedicated
+ HCI message type (HCI_TYPE_PATCH=0x03) for this purpose.
+</p><p>It is important that the WLAN driver ROM and WLAN firmware 
+segments in the EEPROM have the same version patches. If this is not the
+ case, the CC3000 sends <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_messages#HCI_EVNT_PATCHES_REQ_.280x1000.29" title="CC3000 HCI messages" class="mw-redirect"> HCI_EVNT_PATCHES_REQ (0x1000)</a>
+ message, which must be answered with an HCI Patch message to continue 
+operation (even if the code might opt to update the EEPROM using 
+HCI_CMND_NVMEM_WRITE message instead). Thus, the host driver should 
+implement HCI Patch message type, at least to be able to answer the <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_messages#HCI_EVNT_PATCHES_REQ_.280x1000.29" title="CC3000 HCI messages" class="mw-redirect"> HCI_EVNT_PATCHES_REQ (0x1000)</a> event message.
+</p><p>Inside a single HCI Patch message, the patch data can be 
+optionally separated into multiple portions, whereas at least 1 patch 
+portion needs to be included in the packet. The original <a href="http://processors.wiki.ti.com/index.php/CC3000_Wi-Fi_Downloads#Patch_Programmer" title="CC3000 Wi-Fi Downloads"> TI Patch Programmer</a> limits the portion data chunk size to 1000 bytes.
+</p><p>HCI Patch message schema:
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>WRITE</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x01
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 7, max. 65535 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (4-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Yellow" align="center"><b>HCI_TYPE_PATCH</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Yellow">0x03
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Patch operation code (8-bit)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Patch length (16-bit Little-endian)=<i>p</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Low byte
+</td>
+<td style="background:LightSeaGreen">High byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white" align="center"><b>HCI payload</b>, <i>p</i> bytes; 2 ≤ <i>p</i> ≤ 65531
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrchid; color:white" align="center"> Patch portion 1 (mandatory)
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrchid; color:white" align="center">Patch portion length (16-bit Little-endian)=<i>m</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrchid; color:white">Low byte
+</td>
+<td style="background:DarkOrchid; color:white">High byte
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrchid; color:white" align="center"><b>Patch Data</b>, <i>m</i> bytes; 0 ≤ <i>m</i> ≤ 1000
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrchid; color:white" align="center"> ...
+</td>
+<td style="background:DarkOrchid; color:white" align="center"> Patch portion <i>r</i>, <i>r</i> &gt; 1 (optional)
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrchid; color:white" align="center">Patch portion length (16-bit Little-endian)=<i>s</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrchid; color:white">Low byte
+</td>
+<td style="background:DarkOrchid; color:white">High byte
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrchid; color:white" align="center"><b>Patch Data</b>, <i>s</i> bytes; 0 ≤ <i>s</i> ≤ 1000
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+The three possible options for <i>Patch operation code</i> field are:
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Operation code
+</th>
+<th>Hex value
+</th></tr>
+<tr>
+<td>HCI_EVENT_PATCHES_DRV_REQ
+</td>
+<td>0x01
+</td></tr>
+<tr>
+<td>HCI_EVENT_PATCHES_FW_REQ
+</td>
+<td>0x02
+</td></tr>
+<tr>
+<td>HCI_EVENT_PATCHES_BOOTLOAD_REQ
+</td>
+<td>0x03
+</td></tr></tbody></table>
+<p><br>
+See an example of HCI Patch message to deny the CC3000 firmware patch request <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_PATCH_messages" title="CC3000 HCI PATCH messages"> here</a>.
+</p>
+<h2><span class="mw-headline" id="HCI_Event_message">HCI Event message</span></h2>
+<p>HCI Event message is sent by CC3000 towards SPI master. It is either 
+to acknowledge a command or to notify SPI master of asynchronous 
+unsolicited event. Note that the event message needs to be clocked in by
+ SPI master using <a href="#READ_protocol_in_MOSI_direction">READ protocol</a>.
+</p><p>Note that the transmission of selected event messages can be disabled using <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_SET_EVENT_MASK_.280x0008.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_SET_EVENT_MASK (0x0008)</a> command. Following events can be disabled:
+</p>
+<ul><li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_CONNECT_.280x8001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_CONNECT</a>, unsolicited connect event</li>
+<li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_DISCONNECT_.280x8002.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_DISCONNECT</a>, unsolicited disconnect event</li>
+<li> HCI_EVNT_WLAN_UNSOL_INIT, initialization done event</li>
+<li> HCI_EVNT_WLAN_UNSOL_TX_COMPLETE, tranmission complete event</li>
+<li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_DHCP_.280x8010.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_DHCP</a>, <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP</a> report event</li>
+<li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_PING_REPORT_.280x8040.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_PING_REPORT</a>, <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Ping_%28networking_utility%29">ping</a> report event</li>
+<li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_SMART_CONFIG_DONE_.280x8080.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_SMART_CONFIG_DONE</a>, smart config done event</li>
+<li> <a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_KEEPALIVE_.280x8200.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_KEEPALIVE</a>, keepalive event</li></ul>
+<p><br>
+</p>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"> <b>SPI Header</b>, 5 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white" align="center"><b>REPLY</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x02
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"><b>Busy</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">0x00
+</td></tr></tbody></table>
+</td>
+<td style="background:green; color:white" align="center"> Payload length (16-bit Big-endian)=<i>n</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:green; color:white">High byte
+</td>
+<td style="background:green; color:white">Low byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center"> <b>SPI Payload</b>, Length=<i>n</i>, min. 5, max. 259 bytes
+<table border="1">
+
+<tbody><tr>
+<td style="background:blue; color:white" align="center"><b>HCI message</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:cyan" align="center"><b>HCI header</b> (4-bytes)
+<table border="1">
+
+<tbody><tr>
+<td style="background:Peru; color:white" align="center"><b>HCI_TYPE_EVNT</b>
+<table border="1">
+
+<tbody><tr>
+<td style="background:Peru; color:white">0x04
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Event operation code (16-bit Little-endian)
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Low byte
+</td>
+<td style="background:LightSeaGreen">High byte
+</td></tr></tbody></table>
+</td>
+<td style="background:LightSeaGreen" align="center">Arguments length (8-bit)=<i>p</i>
+<table border="1">
+
+<tbody><tr>
+<td style="background:LightSeaGreen">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td>
+<td style="background:MediumSlateBlue; color:white"><b>HCI payload</b>, <i>p</i> bytes; 0 ≤ <i>p</i> ≤ 255
+</td></tr></tbody></table>
+</td>
+<td style="background:DarkOrange" align="center">Optional padding
+<table border="1">
+
+<tbody><tr>
+<td style="background:DarkOrange">Byte
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><br>
+CC3000 acknowledges most commands using an event with the same hex value as the command.
+</p><p>The options for <i>Event operation code</i> (possibly not a full 
+list with all options. Note that the code in this table is the value, 
+not the Little-endian formation as in the original SPI packet):
+</p>
+<table border="1">
+
+<tbody><tr>
+<th>Event operation code
+</th>
+<th>Hex value
+</th>
+<th>Applicable command or data message
+</th></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_CONNECT_.280x0001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_CONNECT</a>
+</td>
+<td>0x0001
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_CONNECT_.280x0001.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_CONNECT</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_DISCONNECT_.280x0002.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_DISCONNECT</a>
+</td>
+<td>0x0002
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_DISCONNECT_.280x0002.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_DISCONNECT</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_SET_SCANPARAM_.280x0003.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_SET_SCANPARAM</a>
+</td>
+<td>0x0003
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SET_SCANPARAM_.280x0003.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SET_SCANPARAM</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_SET_CONNECTION_POLICY_.280x0004.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_SET_CONNECTION_POLICY</a>
+</td>
+<td>0x0004
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SET_CONNECTION_POLICY_.280x0004.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SET_CONNECTION_POLICY</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_ADD_PROFILE_.280x0005.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_ADD_PROFILE</a>
+</td>
+<td>0x0005
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_ADD_PROFILE_.280x0005.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_ADD_PROFILE</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_DEL_PROFILE_.280x0006.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_DEL_PROFILE</a>
+</td>
+<td>0x0006
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_DEL_PROFILE_.280x0006.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_DEL_PROFILE</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_GET_SCAN_RESULTS_.280x0007.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_GET_SCAN_RESULTS</a>
+</td>
+<td>0x0007
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_GET_SCAN_RESULTS_.280x0007.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_GET_SCAN_RESULTS</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_SET_EVENT_MASK_.280x0008.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_SET_EVENT_MASK</a>
+</td>
+<td>0x0008
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_SET_EVENT_MASK_.280x0008.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_SET_EVENT_MASK</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_STATUSGET_.280x0009.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_STATUSGET</a>
+</td>
+<td>0x0009
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_STATUSGET_.280x0009.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_STATUSGET</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_WLAN_IOCTL_SMART_CONFIG_START
+</td>
+<td>0x000A
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_START_.280x000A.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_START</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_WLAN_IOCTL_SMART_CONFIG_STOP
+</td>
+<td>0x000B
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_STOP_.280x000B.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_STOP</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX_.280x000C.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX</a>
+</td>
+<td>0x000C
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX_.280x000C.29" title="CC3000 HCI CMND messages"> HCI_CMND_WLAN_IOCTL_SMART_CONFIG_SET_PREFIX</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_WLAN_CONFIGURE_PATCH
+</td>
+<td>0x000D
+</td>
+<td>HCI_CMND_WLAN_CONFIGURE_PATCH
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NVMEM_READ_.280x0201.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NVMEM_READ</a>
+</td>
+<td>0x0201
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_READ_.280x0201.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_READ</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NVMEM_WRITE
+</td>
+<td>0x0202
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_NVMEM_WRITE_.280x90.29" title="CC3000 HCI DATA messages"> HCI_DATA_NVMEM_WRITE (0x90)</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NVMEM_CREATE_ENTRY
+</td>
+<td>0x0203
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NVMEM_CREATE_ENTRY_.280x0203.29" title="CC3000 HCI CMND messages"> HCI_CMND_NVMEM_CREATE_ENTRY</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NVMEM_WRITE_PATCH
+</td>
+<td>0x0204
+</td>
+<td>HCI_CMND_NVMEM_WRITE_PATCH
+</td></tr>
+<tr>
+<td>HCI_EVNT_NVMEM_SWAP_ENTRY
+</td>
+<td>0x0205
+</td>
+<td>HCI_CMND_NVMEM_SWAP_ENTRY
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_READ_SP_VERSION_.280x0207.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_READ_SP_VERSION</a>
+</td>
+<td>0x0207
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_READ_SP_VERSION_.280x0207.29" title="CC3000 HCI CMND messages"> HCI_CMND_READ_SP_VERSION</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_PATCHES_REQ_.280x1000.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_PATCHES_REQ</a>
+</td>
+<td>0x1000
+</td>
+<td>Likely gets sent if EEPROM firmware version&nbsp;!= driver version
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_SOCKET_.280x1001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_SOCKET</a>
+</td>
+<td>0x1001
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SOCKET_.280x1001.29" title="CC3000 HCI CMND messages"> HCI_CMND_SOCKET</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_BIND_.280x1002.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_BIND</a>
+</td>
+<td>0x1002
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_BIND_.280x1002.29" title="CC3000 HCI CMND messages"> HCI_CMND_BIND</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_DATA_SEND
+</td>
+<td>0x1003
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_SEND_.280x81.29" title="CC3000 HCI DATA messages"> HCI_DATA_SEND (0x81)</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_RECV
+</td>
+<td>0x1004
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_RECV_.280x1004.29" title="CC3000 HCI CMND messages"> HCI_CMND_RECV</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_ACCEPT
+</td>
+<td>0x1005
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_ACCEPT_.280x1005.29" title="CC3000 HCI CMND messages"> HCI_CMND_ACCEPT</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_LISTEN
+</td>
+<td>0x1006
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_LISTEN_.280x1006.29" title="CC3000 HCI CMND messages"> HCI_CMND_LISTEN</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_CONNECT_.280x1007.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_CONNECT</a>
+</td>
+<td>0x1007
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_CONNECT_.280x1007.29" title="CC3000 HCI CMND messages"> HCI_CMND_CONNECT</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_SELECT
+</td>
+<td>0x1008
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SELECT_.280x1008.29" title="CC3000 HCI CMND messages"> HCI_CMND_SELECT</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_SETSOCKOPT
+</td>
+<td>0x1009
+</td>
+<td>HCI_CMND_SETSOCKOPT
+</td></tr>
+<tr>
+<td>HCI_EVNT_GETSOCKOPT
+</td>
+<td>0x100A
+</td>
+<td>HCI_CMND_GETSOCKOPT
+</td></tr>
+<tr>
+<td>HCI_EVNT_CLOSE_SOCKET
+</td>
+<td>0x100B
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_CLOSE_SOCKET_.280x100B.29" title="CC3000 HCI CMND messages"> HCI_CMND_CLOSE_SOCKET</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_RECVFROM
+</td>
+<td>0x100D
+</td>
+<td>HCI_CMND_RECVFROM
+</td></tr>
+<tr>
+<td>HCI_EVNT_WRITE
+</td>
+<td>0x100E
+</td>
+<td>?
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_DATA_SENDTO_.280x100F.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_DATA_SENDTO</a>
+</td>
+<td>0x100F
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages#HCI_DATA_SENDTO_.280x83.29" title="CC3000 HCI DATA messages"> HCI_DATA_SENDTO (0x83)</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_GETHOSTBYNAME
+</td>
+<td>0x1010
+</td>
+<td>HCI_CMND_GETHOSTNAME
+</td></tr>
+<tr>
+<td>HCI_EVNT_MDNS_ADVERTISE
+</td>
+<td>0x1011
+</td>
+<td>HCI_CMND_MDNS_ADVERTISE
+</td></tr>
+<tr>
+<td>HCI_EVNT_GETMSSVALUE
+</td>
+<td>0x1012
+</td>
+<td>HCI_CMND_GETMSSVALUE
+</td></tr>
+<tr>
+<td>HCI_EVNT_NETAPP_DHCP
+</td>
+<td>0x2001
+</td>
+<td>HCI_CMND_NETAPP_DHCP
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NETAPP_PING_SEND_.280x2002.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NETAPP_PING_SEND</a>
+</td>
+<td>0x2002
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_SEND_.280x2002.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_SEND</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NETAPP_PING_REPORT_.280x2003.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NETAPP_PING_REPORT</a>
+</td>
+<td>0x2003
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_REPORT_.280x2003.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_REPORT</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NETAPP_PING_STOP_.280x2004.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NETAPP_PING_STOP</a>
+</td>
+<td>0x2004
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_PING_STOP_.280x2004.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_PING_STOP</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_NETAPP_GETIPCONFIG_.280x2005.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_NETAPP_GETIPCONFIG</a>
+</td>
+<td>0x2005
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_GETIPCONFIG_.280x2005.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_GETIPCONFIG</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NETAPP_ARP_FLUSH
+</td>
+<td>0x2006
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_ARP_FLUSH_.280x2006.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_ARP_FLUSH</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NETAPP_SET_DEBUG_LEVEL
+</td>
+<td>0x2008
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_NETAPP_SET_DEBUG_LEVEL_.280x2008.29" title="CC3000 HCI CMND messages"> HCI_CMND_NETAPP_SET_DEBUG_LEVEL</a>
+</td></tr>
+<tr>
+<td>HCI_EVNT_NETAPP_SET_TIMERS
+</td>
+<td>0x2009
+</td>
+<td>HCI_CMND_NETAPP_SET_TIMERS
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_SIMPLE_LINK_START_.280x4000.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_SIMPLE_LINK_START</a>
+</td>
+<td>0x4000
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_SIMPLE_LINK_START_.280x4000.29" title="CC3000 HCI CMND messages"> HCI_CMND_SIMPLE_LINK_START</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_READ_BUFFER_SIZE_.280x400B.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_READ_BUFFER_SIZE</a>
+</td>
+<td>0x400B
+</td>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages#HCI_CMND_READ_BUFFER_SIZE_.280x400B.29" title="CC3000 HCI CMND messages"> HCI_CMND_READ_BUFFER_SIZE</a>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_DATA_UNSOL_FREE_BUFF_.280x4100.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_DATA_UNSOL_FREE_BUFF</a>
+</td>
+<td>0x4100
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_CONNECT_.280x8001.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_CONNECT</a>
+</td>
+<td>0x8001
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_DISCONNECT_.280x8002.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_DISCONNECT</a>
+</td>
+<td>0x8002
+</td>
+<td>
+</td></tr>
+<tr>
+<td>HCI_EVNT_WLAN_UNSOL_INIT
+</td>
+<td>0x8004
+</td>
+<td>
+</td></tr>
+<tr>
+<td>HCI_EVNT_WLAN_UNSOL_TX_COMPLETE
+</td>
+<td>0x8008
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_DHCP_.280x8010.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_DHCP</a>
+</td>
+<td>0x8010
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_PING_REPORT_.280x8040.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_PING_REPORT</a>
+</td>
+<td>0x8040
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_SMART_CONFIG_DONE_.280x8080.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_SMART_CONFIG_DONE</a>
+</td>
+<td>0x8080
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_KEEPALIVE_.280x8200.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_KEEPALIVE</a>
+</td>
+<td>0x8200
+</td>
+<td>
+</td></tr>
+<tr>
+<td><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages#HCI_EVNT_WLAN_UNSOL_TCP_CLOSE_WAIT_.280x8800.29" title="CC3000 HCI EVNT messages"> HCI_EVNT_WLAN_UNSOL_TCP_CLOSE_WAIT</a>
+</td>
+<td>0x8800
+</td>
+<td>
+</td></tr></tbody></table>
+<p><br>
+</p>
+<h1><span class="mw-headline" id="Related_Pages">Related Pages</span></h1>
+<p>The following pages, can be useful as a reference:
+</p>
+<ol><li><a href="http://processors.wiki.ti.com/index.php/CC3000_Serial_Port_Interface_%28SPI%29" title="CC3000 Serial Port Interface (SPI)">Serial Port Interface</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_CMND_messages" title="CC3000 HCI CMND messages">HCI Command messages explained</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_DATA_messages" title="CC3000 HCI DATA messages">HCI Data messages explained</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_PATCH_messages" title="CC3000 HCI PATCH messages">HCI Patch messages explained</a></li>
+<li><a href="http://processors.wiki.ti.com/index.php/CC3000_HCI_EVNT_messages" title="CC3000 HCI EVNT messages">HCI Event messages explained</a></li></ol>
+<p><br>
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.116 seconds
+Real time usage: 0.124 seconds
+Preprocessor visited node count: 56/1000000
+Preprocessor generated node count: 62/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key davincid_wikidb:pcache:idhash:33483-0!*!0!!en!*!* and timestamp 20160328181608 and revision id 182962
+ -->
+<div class="hf-footer"></div><div class="hf-nsfooter"><table style="text-align:center; background:white; width:100%; text-align:left; height: 65px border-top: 1px solid; border-bottom: 1px solid; border-left: 1px solid; border-right: 1px solid; border-width: 1px; border-style: solid;">
+<tbody><tr>
+<td width="305px"><a href="http://processors.wiki.ti.com/index.php/File:E2e.jpg" class="image"><img alt="E2e.jpg" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/E2e.jpg" height="63" width="305"></a>
+</td>
+<td><i>For technical support please post your questions at <a rel="nofollow" class="external free" href="http://e2e.ti.com/">http://e2e.ti.com</a>. Please post only comments about the article <b>CC3000 Protocol</b> here.</i>
+</td></tr></tbody></table>
+<table style="border-style:solid; border-width:1px; text-align:center; width:100%;">
+
+<tbody><tr style="font-size:150%;">
+<td rowspan="2"> <a href="http://processors.wiki.ti.com/index.php/File:Hyperlink_blue.png" class="image"><img alt="Hyperlink blue.png" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/Hyperlink_blue.png" height="96" width="96"></a>
+</td>
+<td><b>Links</b>
+</td></tr>
+<tr>
+<td>
+<table style="text-align: left;">
+<tbody><tr>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/amplifier_and_linear.page">Amplifiers &amp; Linear</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/audio/audio_overview.page">Audio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/rfif.page">Broadband RF/IF &amp; Digital Radio</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/clocksandtimers/clocks_and_timers.page">Clocks &amp; Timers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/dataconverters/data_converter.page">Data Converters</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/mems/mems.page">DLP &amp; MEMS</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/high_reliability.page">High-Reliability</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/interface/interface.page">Interface</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/logic/home_overview.page">Logic</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/powermanagement/power_portal.page">Power Management</a>
+</p>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/embedded_processor.page">Processors</a>
+</p>
+<ul><li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/arm.page">ARM Processors</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/dsp/home.page">Digital Signal Processors (DSP)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/microcontroller/home.page">Microcontrollers (MCU)</a></li>
+<li> <a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/omap-applications-processors/the-omap-experience.page">OMAP Applications Processors</a></li></ul>
+</td>
+<td style="padding-right: 10px; vertical-align: top;">
+<p><a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/switches_and_multiplexers.page">Switches &amp; Multiplexers</a><br>
+<a rel="nofollow" class="external text" href="http://www.ti.com/lsds/ti/analog/temperature_sensor.page">Temperature Sensors &amp; Control ICs</a><br>
+<a rel="nofollow" class="external text" href="http://focus.ti.com/wireless/docs/wirelessoverview.tsp?familyId=2003&amp;sectionId=646&amp;tabId=2735">Wireless Connectivity</a>
+</p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<p><!-- HitBox Sub accounts Code START -->
+<script language="JavaScript" src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/metrics-min.js" type="text/javascript"></script>
+<!-- HitBox Sub accounts Code END -->
+</p></div></div>									<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;oldid=182962">http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;oldid=182962</a>"					</div>
+													<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://processors.wiki.ti.com/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="http://processors.wiki.ti.com/index.php/Category:CC3000" title="Category:CC3000">CC3000</a></li><li><a href="http://processors.wiki.ti.com/index.php?title=Category:Simplelink&amp;action=edit&amp;redlink=1" class="new" title="Category:Simplelink (page does not exist)">Simplelink</a></li><li><a href="http://processors.wiki.ti.com/index.php/Category:Documentation" title="Category:Documentation">Documentation</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="http://processors.wiki.ti.com/index.php?title=Special:UserLogin&amp;returnto=CC3000+Protocol" title="You are encouraged to log in; however, it is not mandatory [Alt+Shift+o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="http://processors.wiki.ti.com/index.php/Special:RequestAccount" title="You are encouraged to create an account and log in; however, it is not mandatory">Request account</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_Protocol" title="View the content page [Alt+Shift+c]" accesskey="c">Page</a></span></li>
+															<li id="ca-talk" class="new"><span><a href="http://processors.wiki.ti.com/index.php?title=Talk:CC3000_Protocol&amp;action=edit&amp;redlink=1" title="Discussion about the content page [Alt+Shift+t]" accesskey="t">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 tabindex="0" id="p-variants-label"><span>Variants</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="http://processors.wiki.ti.com/index.php/CC3000_Protocol">Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;action=edit" title="This page is protected.
+You can view its source [Alt+Shift+e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;action=history" title="Past revisions of this page [Alt+Shift+h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div style="" id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 tabindex="0" id="p-cactions-label"><span>More</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/index.php" id="searchform">
+														<div id="simpleSearch">
+															<input autocomplete="off" tabindex="1" name="search" placeholder="Search" title="Search Texas Instruments Wiki [Alt+Shift+f]" accesskey="f" id="searchInput" type="search"><input value="Special:Search" name="title" type="hidden"><input name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" type="submit">								</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal first" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+			<h3 id="p-navigation-label">Navigation</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-mainpage"><a href="http://processors.wiki.ti.com/index.php/Main_Page" title="Visit the main page [Alt+Shift+z]" accesskey="z">Main Page</a></li>
+													<li id="n-All-pages"><a href="http://processors.wiki.ti.com/index.php/Special:AllPages">All pages</a></li>
+													<li id="n-All-categories"><a href="http://processors.wiki.ti.com/index.php/Special:Categories">All categories</a></li>
+													<li id="n-recentchanges"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [Alt+Shift+r]" accesskey="r">Recent changes</a></li>
+													<li id="n-randompage"><a href="http://processors.wiki.ti.com/index.php/Special:Random" title="Load a random page [Alt+Shift+x]" accesskey="x">Random page</a></li>
+													<li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+			<h3 id="p-coll-print_export-label">Print/export</h3>
+
+			<div class="body">
+									<ul>
+													<li id="coll-create_a_book"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=CC3000+Protocol">Create a book</a></li>
+													<li id="coll-download-as-rl"><a href="http://processors.wiki.ti.com/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=CC3000+Protocol&amp;oldid=182962&amp;writer=rl">Download as PDF</a></li>
+													<li id="t-print"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;printable=yes" title="Printable version of this page [Alt+Shift+p]" accesskey="p">Printable version</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Toolbox</h3>
+
+			<div class="body">
+									<ul>
+													<li id="t-whatlinkshere"><a href="http://processors.wiki.ti.com/index.php/Special:WhatLinksHere/CC3000_Protocol" title="A list of all wiki pages that link here [Alt+Shift+j]" accesskey="j">What links here</a></li>
+													<li id="t-recentchangeslinked"><a href="http://processors.wiki.ti.com/index.php/Special:RecentChangesLinked/CC3000_Protocol" title="Recent changes in pages linked from this page [Alt+Shift+k]" accesskey="k">Related changes</a></li>
+													<li id="t-specialpages"><a href="http://processors.wiki.ti.com/index.php/Special:SpecialPages" title="A list of all special pages [Alt+Shift+q]" accesskey="q">Special pages</a></li>
+													<li id="t-permalink"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;oldid=182962" title="Permanent link to this revision of the page">Permanent link</a></li>
+													<li id="t-info"><a href="http://processors.wiki.ti.com/index.php?title=CC3000_Protocol&amp;action=info" title="More information about this page">Page information</a></li>
+											</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 31 July 2014, at 15:20.</li>
+											<li id="footer-info-viewcount">This page has been accessed 1,128 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://processors.wiki.ti.com/index.php/Project:Privacy_policy" title="Project:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="http://processors.wiki.ti.com/index.php/Project:About" title="Project:About">About Texas Instruments Wiki</a></li>
+											<li id="footer-places-disclaimer"><a href="http://processors.wiki.ti.com/index.php/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-termsofservice"><a href="http://processors.wiki.ti.com/index.php/Project:Terms_of_Service" title="Project:Terms of Service">Terms of Use</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+															<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike" height="31" width="88"></a>
+													</li>
+											<li id="footer-poweredbyico">
+															<a href="http://www.mediawiki.org/"><img src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" height="31" width="88"></a>
+													</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script><div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"http://processors.wiki.ti.com/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/load_004.php"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="CC3000%20Protocol%20-%20Texas%20Instruments%20Wiki_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-3008403-2");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":938});
+}</script>
+	
+
+</body></html>
